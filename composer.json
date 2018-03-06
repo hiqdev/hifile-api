@@ -45,6 +45,11 @@
         "hiqdev/hidev-php": "<2.0 || dev-master",
         "transmedia/hidev-transmedia": "<2.0 || dev-master"
     },
+    "extra": {
+        "config-plugin": {
+            "params": "src/config/params.php"
+        }
+    },
     "autoload": {
         "psr-4": {
             "transmedia\\signage\\file\\api\\": "src"
