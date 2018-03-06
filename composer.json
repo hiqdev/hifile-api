@@ -37,7 +37,8 @@
         }
     ],
     "require": {
-        "hiqdev/hiapi": "v2.x-dev"
+        "hiqdev/hiapi": "v2.x-dev",
+        "transmedia/signage-file-sql": "<2.0 || dev-master"
     },
     "require-dev": {
         "yiisoft/yii2": "dev-master",
