@@ -1,0 +1,59 @@
+{
+    "name": "transmedia/signage-file-api",
+    "type": "yii2-extension",
+    "description": "Signage File API server",
+    "keywords": [
+        "digital signage",
+        "file",
+        "api"
+    ],
+    "homepage": "https://github.com/transmedia/signage-file-api",
+    "license": "proprietary",
+    "support": {
+        "email": "support@transmedia.com.ua",
+        "source": "https://git.hiqdev.com/transmedia/signage-file-api",
+        "issues": "https://git.hiqdev.com/transmedia/signage-file-api/issues",
+        "wiki": "https://git.hiqdev.com/transmedia/signage-file-api/wiki",
+        "forum": "http://forum.transmedia.com.ua/"
+    },
+    "authors": [
+        {
+            "name": "Andrii Vasyliev",
+            "role": "Project lead",
+            "email": "sol@hiqdev.com",
+            "homepage": "http://hipanel.com/"
+        },
+        {
+            "name": "Dmitry Naumenko",
+            "role": "Lead backend developer",
+            "email": "d.naumenko.a@gmail.com",
+            "homepage": "https://silverfire.me/"
+        },
+        {
+            "name": "Andrey Klochok",
+            "role": "Lead frontend developer",
+            "email": "andreyklochok@gmail.com",
+            "homepage": "http://hiqdev.com/"
+        }
+    ],
+    "require": {
+        "hiqdev/hiapi": "v2.x-dev"
+    },
+    "require-dev": {
+        "yiisoft/yii2": "dev-master",
+        "hiqdev/hidev-php": "<2.0 || dev-master",
+        "transmedia/hidev-transmedia": "<2.0 || dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "transmedia\\signage\\sql\\": "src"
+        }
+    },
+    "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packagist.hiqdev.com"
+        }
+    ]
+}
