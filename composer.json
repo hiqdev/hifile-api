@@ -47,7 +47,7 @@
     },
     "autoload": {
         "psr-4": {
-            "transmedia\\signage\\sql\\": "src"
+            "transmedia\\signage\\file\\api\\": "src"
         }
     },
     "minimum-stability": "dev",
