@@ -30,10 +30,6 @@ return [
             \hiqdev\yii2\autobus\components\CommandFactoryInterface::class => \hiqdev\yii2\autobus\components\SimpleCommandFactory::class,
 
             \hiapi\bus\ApiCommandsBusInterface::class => [
-                'class' => \hiqdev\yii2\autobus\components\BranchedAutoBus::class,
-                '__construct()' => [
-                    0 => Instance::of('bus.http-request')
-                ],
                 'branches' => [
                     'file' => [
                         'search' => \transmedia\signage\file\api\commands\FileSearchCommand::class,
