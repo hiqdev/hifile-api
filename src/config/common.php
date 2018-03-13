@@ -50,7 +50,7 @@ return [
                 'middlewares' => [
                     $_ENV['ENABLE_JSONAPI_RESPONSE'] ?? false
                         ? \hiapi\middlewares\JsonApiMiddleware::class
-                        : \transmedia\hiapi\middlewares\LegacyResponderMiddleware::class,
+                        : \hiapi\middlewares\LegacyResponderMiddleware::class,
                     \hiapi\middlewares\HandleExceptionsMiddleware::class,
                     \hiqdev\yii2\autobus\bus\LoadFromRequestMiddleware::class,
                     \hiqdev\yii2\autobus\bus\ValidateMiddleware::class,
