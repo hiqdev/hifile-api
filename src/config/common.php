@@ -57,11 +57,11 @@ return [
                 '__class' => \hiapi\middlewares\PerCommandMiddleware::class,
                 'commandMiddlewares' => [
                     \transmedia\signage\file\api\commands\FileSearchCommand::class => [
-                        [\hiapi\middlewares\AuthMiddleware::class, 'client.read'],
+                        [\hiapi\middlewares\AuthMiddleware::class, 'file.read'],
                         \hiapi\middlewares\PassthroughCommandHandler::class,
                     ],
                     \transmedia\signage\file\api\commands\FileCreateCommand::class => [
-                        [\hiapi\middlewares\AuthMiddleware::class, 'client.create'], // TODO: check id
+                        [\hiapi\middlewares\AuthMiddleware::class, 'file.create'],
                         \hiapi\middlewares\PassthroughCommandHandler::class
                     ],
                 ],
