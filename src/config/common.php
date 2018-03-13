@@ -11,13 +11,6 @@
 return [
     'container' => [
         'singletons' => [
-        /// User
-            \yii\web\User::class => function () {
-                return new \yii\web\User([
-                    'identityClass' => \transmedia\hiapi\models\UserIdentity::class,
-                ]);
-            },
-        // BUS
             \hiapi\bus\ApiCommandsBusInterface::class => [
                 'branches' => [
                     'file' => [
