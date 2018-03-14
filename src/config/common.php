@@ -32,6 +32,12 @@ return [
                     ],
                 ],
             ],
+
+            \hiqdev\yii\DataMapper\hydrator\ConfigurableAggregateHydrator::class => [
+                'hydrators' => [
+                    \transmedia\signage\file\api\domain\file\File::class => \transmedia\signage\file\api\services\FileHydrator::class,
+                 ],
+            ],
         ],
     ],
 ];

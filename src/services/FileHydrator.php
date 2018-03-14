@@ -1,6 +1,6 @@
 <?php
 
-namespace transmedia\signage\api\models;
+namespace transmedia\signage\file\api\services;
 
 use hiqdev\yii\DataMapper\hydrator\GeneratedHydratorTrait;
 use hiqdev\yii\DataMapper\hydrator\RootHydratorAwareTrait;
