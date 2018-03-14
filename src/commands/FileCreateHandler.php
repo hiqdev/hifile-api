@@ -1,9 +1,9 @@
 <?php
 
-namespace transmedia\hiapi\modules\file\commands;
+namespace transmedia\signage\file\api\commands;
 
-use transmedia\hiapi\modules\file\domain\FileServiceInterface;
-use transmedia\hiapi\modules\file\domain\dto\FileCreationDto;
+use transmedia\signage\file\api\domain\file\FileServiceInterface;
+use transmedia\signage\file\api\domain\file\FileCreationDto;
 use yii\web\User;
 
 /**

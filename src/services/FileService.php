@@ -1,10 +1,10 @@
 <?php
 
-namespace transmedia\hiapi\modules\file;
+namespace transmedia\signage\file\api\services;
 
 use hiapi\exceptions\domain\InvariantException;
 use hiqdev\yii\DataMapper\query\Specification;
-use transmedia\signage\file\api\domain\file\aggregates\File;
+use transmedia\signage\file\api\domain\file\File;
 use transmedia\signage\file\api\domain\file\FileFactoryInterface;
 use transmedia\signage\file\api\domain\file\FileRepositoryInterface;
 use transmedia\signage\file\api\domain\file\FileServiceInterface;
@@ -22,34 +22,22 @@ class FileService implements FileServiceInterface
      */
     private $repository;
     /**
-     * @var string
-     */
-    private $defaultSeller;
-    /**
      * @var FileFactoryInterface
      */
     private $factory;
 
-    public function __construct($defaultSeller, FileRepositoryInterface $fileRepository, FileFactoryInterface $fileFactory)
+    public function __construct(FileRepositoryInterface $fileRepository, FileFactoryInterface $fileFactory)
     {
         $this->repository = $fileRepository;
-        $this->defaultSeller = $defaultSeller;
         $this->factory = $fileFactory;
     }
 
     public function create(FileCreationDto $dto): File
     {
-        $file = new File($dto->login, $dto->password);
-        if ($dto->type !== null) {
-            $file->setType($dto->type);
-        }
-
-        $this->factory->hydrate(['seller' => ['login' => $dto->seller]], $file);
-
-        $this->ensureLoginIsUnique($file);
+        $file = $this->factory->create($dto);
         $this->repository->create($file);
 
-        return $this->repository->findOneOrFail((new Specification())->where(['id' => $file->getId()]));
+        return $file;
     }
 
     /**
@@ -59,13 +47,11 @@ class FileService implements FileServiceInterface
      */
     public function changeType(int $id, string $type): File
     {
-        $spec = (new Specification())->where(['id' => $id]);
-        $file = $this->repository->findOneOrFail($spec);
-
+        $file = $this->findOneOrFail($id);
         $file->setType($type);
         $this->repository->persist($file);
 
-        return $this->repository->findOneOrFail($spec);
+        return $file;
     }
 
     /**
@@ -74,10 +60,16 @@ class FileService implements FileServiceInterface
      */
     public function delete($id): File
     {
-        $file = $this->repository->findOneOrFail((new Specification())->where(['id' => $id]));
-
+        $file = $this->findOneOrFail($id);
         $this->repository->delete($file);
 
         return $file;
+    }
+
+    public function findOneOrFail($id)
+    {
+        $spec = (new Specification())->where(['id' => $id]);
+
+        return $this->repository->findOneOrFail($spec);
     }
 }

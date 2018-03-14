@@ -43,11 +43,15 @@ class FileRepository extends BaseRepository implements FileRepositoryInterface
     /** {@inheritdoc} */
     public function create(File $file): File
     {
-        $call = new CallExpression('add_file', new HstoreExpression([
-            'type' => $file->getType(),
-        ]));
-        $command = $this->db->createSelect($call);
-        $id = $command->scalar();
+        $query = (new Query())->select([
+            new CallExpression('add_file', new HstoreExpression([
+                'remoteid'  => $file->getRemoteId(),
+                'label'     => $file->getLabel(),
+                'descr'     => $file->getDescr(),
+                'type'      => $file->getType(),
+            ]))
+        ]);
+        $id = $query->scalar();
 
         if ($id === null) {
             throw new \RuntimeException('Failed to create file');
@@ -71,13 +75,14 @@ class FileRepository extends BaseRepository implements FileRepositoryInterface
      */
     public function persist(File $file): void
     {
-        $call = new CallExpression('set_file', new HstoreExpression([
-            'id' => $file->getId(),
-            'type' => $file->getType(),
-            'state' => $file->getState(),
-        ]));
-        $command = $this->db->createSelect($call);
-        $id = $command->scalar();
+        $query = (new Query())->select([
+            new CallExpression('set_file', new HstoreExpression([
+                'id' => $file->getId(),
+                'type' => $file->getType(),
+                'state' => $file->getState(),
+            ]))
+        ]);
+        $id = $query->scalar();
 
         if ($id === null) {
             throw new \RuntimeException('Failed to persist file');

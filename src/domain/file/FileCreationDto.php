@@ -9,6 +9,12 @@ namespace transmedia\signage\file\api\domain\file;
  */
 class FileCreationDto
 {
+    public $remoteid;
+
+    public $label;
+
+    public $descr;
+
     public $type;
 
     public $state;

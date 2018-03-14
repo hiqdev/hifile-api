@@ -1,6 +1,6 @@
 <?php
 
-namespace transmedia\signage\file\api\models;
+namespace transmedia\signage\file\api\domain\file;
 
 use hiapi\exceptions\domain\InvariantException;
 
@@ -20,6 +20,9 @@ class File
     /** @var int */
     private $id;
 
+    /** @var text */
+    private $remoteid;
+
     /** @var string */
     private $label;
 
@@ -36,10 +39,9 @@ class File
      */
     private $state;
 
-    public function __construct($login, $password)
+    public function __construct($remoteid)
     {
-        $this->login = $login;
-        $this->password = $password;
+        $this->login = $remoteid;
     }
 
     /**
@@ -48,6 +50,14 @@ class File
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRemoteId(): string
+    {
+        return $this->remoteid;
     }
 
     /**

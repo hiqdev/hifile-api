@@ -3,9 +3,9 @@
 namespace transmedia\signage\file\api\services;
 
 use hiqdev\yii\DataMapper\factories\HydratorAwareFactoryTrait;
-use transmedia\signage\file\api\domain\file\FileFactoryInterface;
 use transmedia\signage\file\api\domain\file\File;
 use transmedia\signage\file\api\domain\file\FileCreationDto;
+use transmedia\signage\file\api\domain\file\FileFactoryInterface;
 use Zend\Hydrator\HydratorInterface;
 
 class FileFactory implements FileFactoryInterface
@@ -33,6 +33,17 @@ class FileFactory implements FileFactoryInterface
      */
     public function create(FileCreationDto $dto): File
     {
-        return new File($dto->login, $dto->password);
+        $file = new File($dto->remoteid);
+        if ($dto->label !== null) {
+            $file->setLabel($dto->label);
+        }
+        if ($dto->descr !== null) {
+            $file->setDescr($dto->descr);
+        }
+        if ($dto->type !== null) {
+            $file->setType($dto->type);
+        }
+
+        return $file;
     }
 }
