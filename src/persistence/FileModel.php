@@ -18,4 +18,9 @@ class FileModel extends AbstractModel
             'state_id' => IntegerAttribute::class,
         ];
     }
+
+    public function relations()
+    {
+        return [];
+    }
 }

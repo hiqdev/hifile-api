@@ -1,6 +1,6 @@
 <?php
 
-namespace transmedia\hiapi\modules\file;
+namespace transmedia\signage\file\api\services;
 
 use hiqdev\yii\DataMapper\factories\HydratorAwareFactoryTrait;
 use transmedia\signage\file\api\domain\file\FileFactoryInterface;

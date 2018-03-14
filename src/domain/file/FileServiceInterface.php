@@ -2,9 +2,6 @@
 
 namespace transmedia\signage\file\api\domain\file;
 
-use transmedia\signage\file\api\domain\file\File;
-use transmedia\signage\file\api\domain\file\FileCreationDto;
-
 /**
  * Interface FileRepositoryInterface
  */

@@ -61,7 +61,7 @@ class FileRepository extends BaseRepository implements FileRepositoryInterface
     /**
      * @param File $file
      */
-    public function delete($file): void
+    public function delete(File $file): void
     {
         $this->db->createCommand()->delete('file', ['obj_id' => (int)$file->getId()])->execute();
     }

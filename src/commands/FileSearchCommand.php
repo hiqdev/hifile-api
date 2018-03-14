@@ -4,7 +4,7 @@ namespace transmedia\signage\file\api\commands;
 
 use hiapi\commands\RequestAwareTrait;
 use hiapi\commands\SearchCommand;
-use transmedia\signage\file\api\models\File;
+use transmedia\signage\file\api\domain\file\File;
 
 /**
  * Class FileSearchCommand

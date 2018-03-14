@@ -33,11 +33,17 @@ return [
                 ],
             ],
 
+            \hiqdev\yii\DataMapper\components\EntityManagerInterface::class => [
+                'repositories' => [
+                    \transmedia\signage\file\api\domain\file\File::class => \transmedia\signage\file\api\persistence\FileRepository::class,
+                ],
+            ],
             \hiqdev\yii\DataMapper\hydrator\ConfigurableAggregateHydrator::class => [
                 'hydrators' => [
                     \transmedia\signage\file\api\domain\file\File::class => \transmedia\signage\file\api\services\FileHydrator::class,
                  ],
             ],
+            \transmedia\signage\file\api\domain\file\FileFactoryInterface::class => \transmedia\signage\file\api\services\FileFactory::class,
         ],
     ],
 ];

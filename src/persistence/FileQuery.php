@@ -14,7 +14,7 @@ class FileQuery extends Query
     protected function attributesMap()
     {
         return [
-            'id'        => 'zf.obj_id',
+            'id'        => 'zf.id',
             'type'      => 'ft.name',
             'type_id'   => 'zf.type_id',
             'state'     => 'fs.name',

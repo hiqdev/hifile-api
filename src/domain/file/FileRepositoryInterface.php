@@ -1,9 +1,8 @@
 <?php
 
-namespace transmedia\signage\file\api\persistence;
+namespace transmedia\signage\file\api\domain\file;
 
 use hiqdev\yii\DataMapper\repositories\GenericRepositoryInterface;
-use transmedia\signage\file\api\domain\file\File;
 
 /**
  * Interface FileRepositoryInterface
