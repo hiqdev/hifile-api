@@ -12,6 +12,7 @@ class FileModel extends AbstractModel
     {
         return [
             'id' => IntegerAttribute::class,
+            'remoteid' => StringAttribute::class,
             'type' => StringAttribute::class,
             'state' => StringAttribute::class,
             'type_id' => IntegerAttribute::class,

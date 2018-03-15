@@ -41,7 +41,7 @@ class File
 
     public function __construct($remoteid)
     {
-        $this->login = $remoteid;
+        $this->remoteid = $remoteid;
     }
 
     /**

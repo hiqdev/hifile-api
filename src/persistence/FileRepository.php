@@ -49,6 +49,7 @@ class FileRepository extends BaseRepository implements FileRepositoryInterface
                 'label'     => $file->getLabel(),
                 'descr'     => $file->getDescr(),
                 'type'      => $file->getType(),
+                'state'     => $file->getState(),
             ]))
         ]);
         $id = $query->scalar();

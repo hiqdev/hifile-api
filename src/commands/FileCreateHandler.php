@@ -31,6 +31,7 @@ class FileCreateHandler
     public function handle(FileCreateCommand $command)
     {
         $dto = new FileCreationDto();
+        $dto->remoteid = $command->remoteid;
         $dto->label = $command->label;
         $dto->descr = $command->descr;
 

@@ -15,7 +15,7 @@ class FileCreateCommand extends BaseCommand
     /**
      * @var string
      */
-    public $type;
+    public $remoteid;
 
     /**
      * @var string
@@ -27,9 +27,15 @@ class FileCreateCommand extends BaseCommand
      */
     public $descr;
 
+    /**
+     * @var string
+     */
+    public $type;
+
     public function rules()
     {
         return [
+            [['remoteid'], 'string'],
             [['type'], RefValidator::class],
             [['label'], 'string'],
             [['descr'], 'string'],

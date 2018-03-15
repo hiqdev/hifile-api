@@ -15,6 +15,7 @@ class FileQuery extends Query
     {
         return [
             'id'        => 'zf.id',
+            'remoteid'  => 'zf.remoteid',
             'type'      => 'ft.name',
             'type_id'   => 'zf.type_id',
             'state'     => 'fs.name',
