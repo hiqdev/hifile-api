@@ -3,6 +3,7 @@
 namespace transmedia\signage\file\api\domain\file;
 
 use hiapi\exceptions\domain\InvariantException;
+use Ramsey\Uuid\Uuid;
 
 /**
  * Class File
@@ -17,8 +18,11 @@ class File
     const STATE_OK = 'ok';
     const STATE_DELETED = 'deleted';
 
-    /** @var int */
+    /** @var Uuid */
     private $id;
+
+    /** @var int */
+    private $client_id;
 
     /** @var text */
     private $remoteid;
@@ -39,15 +43,16 @@ class File
      */
     private $state;
 
-    public function __construct($remoteid)
+    public function __construct($client_id, $remoteid = null)
     {
+        $this->client_id = $client_id;
         $this->remoteid = $remoteid;
     }
 
     /**
      * @return int
      */
-    public function getId(): ?int
+    public function getId(): ?Uuid
     {
         return $this->id;
     }
@@ -55,7 +60,7 @@ class File
     /**
      * @return string
      */
-    public function getRemoteId(): string
+    public function getRemoteId(): ?string
     {
         return $this->remoteid;
     }
@@ -63,7 +68,7 @@ class File
     /**
      * @return string
      */
-    public function getLabel(): string
+    public function getLabel(): ?string
     {
         return $this->label;
     }
@@ -71,7 +76,7 @@ class File
     /**
      * @return string
      */
-    public function getDescr(): string
+    public function getDescr(): ?string
     {
         return $this->descr;
     }

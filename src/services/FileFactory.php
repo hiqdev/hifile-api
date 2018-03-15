@@ -33,7 +33,7 @@ class FileFactory implements FileFactoryInterface
      */
     public function create(FileCreationDto $dto): File
     {
-        $file = new File($dto->remoteid);
+        $file = new File($dto->client_id, $dto->remoteid);
         if ($dto->label !== null) {
             $file->setLabel($dto->label);
         }

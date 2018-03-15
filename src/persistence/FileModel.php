@@ -11,12 +11,13 @@ class FileModel extends AbstractModel
     public function attributes()
     {
         return [
-            'id' => IntegerAttribute::class,
-            'remoteid' => StringAttribute::class,
-            'type' => StringAttribute::class,
-            'state' => StringAttribute::class,
-            'type_id' => IntegerAttribute::class,
-            'state_id' => IntegerAttribute::class,
+            'id'        => IntegerAttribute::class,
+            'remoteid'  => StringAttribute::class,
+            'client_id' => IntegerAttribute::class,
+            'type'      => StringAttribute::class,
+            'state'     => StringAttribute::class,
+            'type_id'   => IntegerAttribute::class,
+            'state_id'  => IntegerAttribute::class,
         ];
     }
 
