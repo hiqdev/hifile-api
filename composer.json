@@ -39,6 +39,7 @@
     "require": {
         "hiqdev/hiapi": "v2.x-dev",
         "ramsey/uuid": "^3.7",
+        "filestack/filestack-php": "^1.1",
         "transmedia/hipanel-rbac": "<2.0 || dev-master",
         "transmedia/signage-file-sql": "<2.0 || dev-master"
     },
