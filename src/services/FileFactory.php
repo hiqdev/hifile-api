@@ -8,6 +8,11 @@ use transmedia\signage\file\api\domain\file\FileCreationDto;
 use transmedia\signage\file\api\domain\file\FileFactoryInterface;
 use Zend\Hydrator\HydratorInterface;
 
+/**
+ * Class FileFactory
+ *
+ * @author Andrii Vasyliev <sol@hiqdev.com>
+ */
 class FileFactory implements FileFactoryInterface
 {
     use HydratorAwareFactoryTrait;

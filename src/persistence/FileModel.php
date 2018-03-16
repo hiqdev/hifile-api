@@ -8,6 +8,11 @@ use hiqdev\yii\DataMapper\query\attributes\DateTimeAttribute;
 use hiqdev\yii\DataMapper\query\attributes\StringAttribute;
 use hiqdev\yii\DataMapper\query\attributes\UuidAttribute;
 
+/**
+ * Class FileModel
+ *
+ * @author Andrii Vasyliev <sol@hiqdev.com>
+ */
 class FileModel extends AbstractModel
 {
     public function attributes()

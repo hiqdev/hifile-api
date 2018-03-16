@@ -4,6 +4,11 @@ namespace transmedia\signage\file\api\persistence;
 
 use hiqdev\yii\DataMapper\query\Query;
 
+/**
+ * Class FileQuery
+ *
+ * @author Andrii Vasyliev <sol@hiqdev.com>
+ */
 class FileQuery extends Query
 {
     /**
