@@ -2,6 +2,7 @@
 
 namespace transmedia\signage\file\api\domain\file;
 
+use DateTimeImmutable;
 use hiapi\exceptions\domain\InvariantException;
 use Ramsey\Uuid\Uuid;
 
@@ -42,6 +43,16 @@ class File
      * @var string TODO: object
      */
     private $state;
+
+    /**
+     * @var string DateTimeImmutable
+     */
+    private $create_time;
+
+    /**
+     * @var string DateTimeImmutable
+     */
+    private $update_time;
 
     public function __construct($client_id, $remoteid = null)
     {
@@ -103,6 +114,22 @@ class File
     public function getState(): ?string
     {
         return $this->state;
+    }
+
+    /**
+     * @return DateTimeImmutable
+     */
+    public function getCreateTime(): ?DateTimeImmutable
+    {
+        return $this->create_time;
+    }
+
+    /**
+     * @return DateTimeImmutable
+     */
+    public function getUpdateTime(): ?DateTimeImmutable
+    {
+        return $this->update_time;
     }
 
     /**

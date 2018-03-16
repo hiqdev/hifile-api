@@ -14,12 +14,15 @@ class FileQuery extends Query
     protected function attributesMap()
     {
         return [
-            'id'        => 'zf.id',
-            'remoteid'  => 'zf.remoteid',
-            'type'      => 'ft.name',
-            'type_id'   => 'zf.type_id',
-            'state'     => 'fs.name',
-            'state_id'  => 'zf.state_id',
+            'id'            => 'zf.id',
+            'client_id'     => 'zf.client_id',
+            'remoteid'      => 'zf.remoteid',
+            'type'          => 'ft.name',
+            'type_id'       => 'zf.type_id',
+            'state'         => 'fs.name',
+            'state_id'      => 'zf.state_id',
+            'create_time'   => 'zf.create_time',
+            'update_time'   => 'zf.update_time',
         ];
     }
 
