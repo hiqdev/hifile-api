@@ -25,7 +25,11 @@ class File
     /** @var int */
     private $client_id;
 
-    /** @var text */
+    /**
+     * @var text
+     * Eg. FileStack ID: ttc9Vr9SjybPZ0W3Frys
+     *               URL: https://cdn.filestackcontent.com/ttc9Vr9SjybPZ0W3Frys
+     */
     private $remoteid;
 
     /** @var string */
