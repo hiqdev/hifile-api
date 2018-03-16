@@ -19,18 +19,25 @@ class FileCreateHandler
     private $fileService;
 
     /**
+     * @var User
+     */
+    private $user;
+
+    /**
      * FileCreateHandler constructor.
      *
      * @param FileServiceInterface $fileService
      */
-    public function __construct(FileServiceInterface $fileService)
+    public function __construct(FileServiceInterface $fileService, User $user)
     {
         $this->fileService = $fileService;
+        $this->user = $user;
     }
 
     public function handle(FileCreateCommand $command)
     {
         $dto = new FileCreationDto();
+        $dto->client_id = $this->user->getId();
         $dto->remoteid = $command->remoteid;
         $dto->label = $command->label;
         $dto->descr = $command->descr;

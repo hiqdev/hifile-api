@@ -8,6 +8,7 @@ use hiqdev\yii\DataMapper\expressions\CallExpression;
 use hiqdev\yii\DataMapper\expressions\HstoreExpression;
 use hiqdev\yii\DataMapper\query\Specification;
 use hiqdev\yii\DataMapper\repositories\BaseRepository;
+use Ramsey\Uuid\Uuid;
 use transmedia\signage\file\api\domain\file\File;
 use transmedia\signage\file\api\domain\file\FileFactoryInterface;
 use transmedia\signage\file\api\domain\file\FileRepositoryInterface;
@@ -45,6 +46,7 @@ class FileRepository extends BaseRepository implements FileRepositoryInterface
     {
         $query = (new Query())->select([
             new CallExpression('add_file', new HstoreExpression([
+                'client_id' => $file->getClientId(),
                 'remoteid'  => $file->getRemoteId(),
                 'label'     => $file->getLabel(),
                 'descr'     => $file->getDescr(),
@@ -52,7 +54,7 @@ class FileRepository extends BaseRepository implements FileRepositoryInterface
                 'state'     => $file->getState(),
             ]))
         ]);
-        $id = $query->scalar();
+        $id = Uuid::fromString($query->scalar());
 
         if ($id === null) {
             throw new \RuntimeException('Failed to create file');

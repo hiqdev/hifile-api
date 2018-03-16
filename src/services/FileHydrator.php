@@ -4,6 +4,7 @@ namespace transmedia\signage\file\api\services;
 
 use hiqdev\yii\DataMapper\hydrator\GeneratedHydratorTrait;
 use hiqdev\yii\DataMapper\hydrator\RootHydratorAwareTrait;
+use Ramsey\Uuid\Uuid;
 use Zend\Hydrator\HydrationInterface;
 use Zend\Hydrator\HydratorInterface;
 
@@ -25,9 +26,9 @@ class FileHydrator implements HydratorInterface
      */
     public function hydrate(array $data, $object)
     {
-        /*if (!empty($data['client'])) {
-            $data['client'] = $this->hydrate($data['client'], $this->createEmptyInstance(get_class($object)));
-        }*/
+        if (!empty($data['id'])) {
+            $data['id'] = Uuid::fromString($data['id']);
+        }
 
         return $this->generatedHydrate($data, $object);
     }
@@ -39,16 +40,14 @@ class FileHydrator implements HydratorInterface
     public function extract($object)
     {
         $result = array_filter([
-            'id'    => $object->getId(),
-            'type'  => $object->getType(),
-            'state' => $object->getState(),
-            'label' => $object->getLabel(),
-            'descr' => $object->getDescr(),
+            'id'        => $object->getId(),
+            'client_id' => $object->getClientId(),
+            'remoteid'  => $object->getRemoteId(),
+            'type'      => $object->getType(),
+            'state'     => $object->getState(),
+            'label'     => $object->getLabel(),
+            'descr'     => $object->getDescr(),
         ]);
-
-        /*if ($object->getClient() !== null) {
-            $result['client'] = $this->hydrator->extract($object->getClient());
-        }*/
 
         return $result;
     }

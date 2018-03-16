@@ -60,6 +60,14 @@ class File
     /**
      * @return string
      */
+    public function getClientId(): ?int
+    {
+        return $this->client_id;
+    }
+
+    /**
+     * @return string
+     */
     public function getRemoteId(): ?string
     {
         return $this->remoteid;
