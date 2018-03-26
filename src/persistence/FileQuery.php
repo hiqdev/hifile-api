@@ -22,6 +22,10 @@ class FileQuery extends Query
             'id'            => 'zf.id',
             'client_id'     => 'zf.client_id',
             'remoteid'      => 'zf.remoteid',
+            'provider'      => 'fp.name',
+            'mimetype'      => 'fm.name',
+            'filename'      => 'zf.filename',
+            'size'          => 'zf.size',
             'type'          => 'ft.name',
             'type_id'       => 'zf.type_id',
             'state'         => 'fs.name',
@@ -34,8 +38,10 @@ class FileQuery extends Query
     public function initFrom()
     {
         return $this->from('file    zf')
+            ->innerJoin('ref        fp', 'fp.obj_id = zf.provider_id')
             ->innerJoin('ref        ft', 'ft.obj_id = zf.type_id')
             ->innerJoin('ref        fs', 'fs.obj_id = zf.state_id')
+            ->leftJoin('ref         fm', 'fm.obj_id = zf.mimetype_id')
         ;
     }
 }

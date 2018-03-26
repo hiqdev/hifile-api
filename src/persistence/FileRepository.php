@@ -47,11 +47,11 @@ class FileRepository extends BaseRepository implements FileRepositoryInterface
         $query = (new Query())->select([
             new CallExpression('add_file', new HstoreExpression([
                 'client_id' => $file->getClientId(),
+                'provider'  => $file->getProvider(),
                 'remoteid'  => $file->getRemoteId(),
                 'label'     => $file->getLabel(),
                 'descr'     => $file->getDescr(),
                 'type'      => $file->getType(),
-                'state'     => $file->getState(),
             ]))
         ]);
         $id = Uuid::fromString($query->scalar());
@@ -80,9 +80,14 @@ class FileRepository extends BaseRepository implements FileRepositoryInterface
     {
         $query = (new Query())->select([
             new CallExpression('set_file', new HstoreExpression([
-                'id' => $file->getId(),
-                'type' => $file->getType(),
-                'state' => $file->getState(),
+                'id'        => $file->getId(),
+                'mimetype'  => $file->getMimeType(),
+                'filename'  => $file->getFilename(),
+                'size'      => $file->getSize(),
+                'label'     => $file->getLabel(),
+                'descr'     => $file->getDescr(),
+                'type'      => $file->getType(),
+                'state'     => $file->getState(),
             ]))
         ]);
         $id = $query->scalar();

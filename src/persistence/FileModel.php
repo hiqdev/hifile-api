@@ -19,8 +19,14 @@ class FileModel extends AbstractModel
     {
         return [
             'id'            => UuidAttribute::class,
-            'remoteid'      => StringAttribute::class,
             'client_id'     => IntegerAttribute::class,
+            'provider'      => StringAttribute::class,
+            'provider_id'   => IntegerAttribute::class,
+            'remoteid'      => StringAttribute::class,
+            'mimetype'      => StringAttribute::class,
+            'mimetype_id'   => IntegerAttribute::class,
+            'filename'      => StringAttribute::class,
+            'size'          => IntegerAttribute::class,
             'type'          => StringAttribute::class,
             'state'         => StringAttribute::class,
             'type_id'       => IntegerAttribute::class,

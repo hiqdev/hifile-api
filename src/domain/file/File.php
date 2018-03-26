@@ -26,6 +26,11 @@ class File
     private $client_id;
 
     /**
+     * @var textS E.g. 'filestack'
+     */
+    private $provider;
+
+    /**
      * @var text
      * Eg. FileStack ID: ttc9Vr9SjybPZ0W3Frys
      *               URL: https://cdn.filestackcontent.com/ttc9Vr9SjybPZ0W3Frys
@@ -49,6 +54,21 @@ class File
     private $state;
 
     /**
+     * @var int|string (string for big integer)
+     */
+    private $size;
+
+    /**
+     * @var string
+     */
+    private $mimetype;
+
+    /**
+     * @var string
+     */
+    private $filename;
+
+    /**
      * @var string DateTimeImmutable
      */
     private $create_time;
@@ -58,9 +78,10 @@ class File
      */
     private $update_time;
 
-    public function __construct($client_id, $remoteid = null)
+    public function __construct($client_id, $provider, $remoteid)
     {
         $this->client_id = $client_id;
+        $this->provider = $provider;
         $this->remoteid = $remoteid;
     }
 
@@ -78,6 +99,14 @@ class File
     public function getClientId(): ?int
     {
         return $this->client_id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getProvider(): string
+    {
+        return $this->provider;
     }
 
     /**
@@ -118,6 +147,30 @@ class File
     public function getState(): ?string
     {
         return $this->state;
+    }
+
+    /**
+     * @return int|string
+     */
+    public function getSize()
+    {
+        return $this->size;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMimeType(): ?string
+    {
+        return $this->mimetype;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFilename(): ?string
+    {
+        return $this->filename;
     }
 
     /**
@@ -171,5 +224,13 @@ class File
     public function setDescr(string $descr): void
     {
         $this->descr = $descr;
+    }
+    public function setMetaData(array $data): void
+    {
+        foreach (['size','filename','mimetype'] as $key) {
+            if (!empty($data[$key])) {
+                $this->{$key} = $data[$key];
+            }
+        }
     }
 }
