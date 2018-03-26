@@ -14,8 +14,9 @@ return [
             \hiapi\bus\ApiCommandsBusInterface::class => [
                 'branches' => [
                     'file' => [
-                        'search' => \transmedia\signage\file\api\commands\FileSearchCommand::class,
-                        'create' => \transmedia\signage\file\api\commands\FileCreateCommand::class,
+                        'search'    => \transmedia\signage\file\api\commands\FileSearchCommand::class,
+                        'get-info'  => \transmedia\signage\file\api\commands\FileGetInfoCommand::class,
+                        'create'    => \transmedia\signage\file\api\commands\FileCreateCommand::class,
                     ],
                 ],
             ],
@@ -23,6 +24,10 @@ return [
             'bus.per-command-middleware' => [
                 'commandMiddlewares' => [
                     \transmedia\signage\file\api\commands\FileSearchCommand::class => [
+                        [\hiapi\middlewares\AuthMiddleware::class, 'file.read'],
+                        \hiapi\middlewares\PassthroughCommandHandler::class,
+                    ],
+                    \transmedia\signage\file\api\commands\FileGetInfoCommand::class => [
                         [\hiapi\middlewares\AuthMiddleware::class, 'file.read'],
                         \hiapi\middlewares\PassthroughCommandHandler::class,
                     ],
