@@ -34,11 +34,14 @@ class FileCreateHandler
         $this->user = $user;
     }
 
+    /**
+     * Example URL: https://cdn.filestackcontent.com/ttc9Vr9SjybPZ0W3Frys
+     */
     public function handle(FileCreateCommand $command)
     {
         $dto = new FileCreationDto();
         $dto->client_id = $this->user->getId();
-        $dto->remoteid = $command->remoteid;
+        $dto->url = $command->url;
         $dto->label = $command->label;
         $dto->descr = $command->descr;
 

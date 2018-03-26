@@ -15,7 +15,7 @@ class FileCreateCommand extends BaseCommand
     /**
      * @var string
      */
-    public $remoteid;
+    public $url;
 
     /**
      * @var string
@@ -35,10 +35,12 @@ class FileCreateCommand extends BaseCommand
     public function rules()
     {
         return [
-            [['remoteid'], 'string'],
+            [['url'], 'url'],
             [['type'], RefValidator::class],
             [['label'], 'string'],
             [['descr'], 'string'],
+
+            [['url'], 'required'],
         ];
     }
 }
