@@ -6,4 +6,6 @@ return [
     'db.password'   => 'signage',
 
     'hiam.site'     => 'hiam.screens.media',
+
+    'filestack.apiKey'  => null,
 ];

@@ -51,6 +51,13 @@ return [
             \transmedia\signage\file\api\domain\file\FileFactoryInterface::class => \transmedia\signage\file\api\services\FileFactory::class,
             \transmedia\signage\file\api\domain\file\FileServiceInterface::class => \transmedia\signage\file\api\services\FileService::class,
             \transmedia\signage\file\api\domain\file\FileRepositoryInterface::class => \transmedia\signage\file\api\persistence\FileRepository::class,
+        /// providers
+            \transmedia\signage\file\api\providers\ProviderFactoryInterface::class => \transmedia\signage\file\api\providers\ProviderFactory::class,
+            \Filestack\FilestackClient::class => [
+                '__construct()' => [
+                    0 => $params['filestack.apiKey'],
+                ],
+            ],
         ],
     ],
 ];
