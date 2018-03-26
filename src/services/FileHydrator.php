@@ -50,7 +50,11 @@ class FileHydrator implements HydratorInterface
         $result = array_filter([
             'id'            => $object->getId(),
             'client_id'     => $object->getClientId(),
+            'provider'      => $object->getProvider(),
             'remoteid'      => $object->getRemoteId(),
+            'mimetype'      => $object->getMimeType(),
+            'filename'      => $object->getFilename(),
+            'size'          => $object->getSize(),
             'type'          => $object->getType(),
             'state'         => $object->getState(),
             'label'         => $object->getLabel(),
