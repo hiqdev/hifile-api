@@ -9,4 +9,10 @@
  * @copyright Copyright (c) 2018, TransMedia (http://transmedia.com.ua/)
  */
 
-return [];
+return [
+    'controllerMap' => [
+        'file' => [
+            'class' => \transmedia\signage\file\api\console\FileController::class,
+        ],
+    ],
+];

@@ -35,7 +35,7 @@ class ProxyController extends \yii\web\Controller
             return $this->redirect($canonic);
         }
 
-        $this->fileService->saveFile($file);
+        $this->fileService->fetchFile($file);
         $url = $this->fileService->getRemoteUrl($file);
 
         return $this->redirect($url);

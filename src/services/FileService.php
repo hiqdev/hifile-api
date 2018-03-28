@@ -117,22 +117,29 @@ class FileService implements FileServiceInterface
         return '/file/' . $this->getFilePath($file);
     }
 
-    public function saveFile(File $file): void
+    public function fetchFile(File $file): void
     {
-        $url = $this->getRemoteUrl($file);
-        $dst = $this->getDestination($file);
-        $bin = dirname(__DIR__) . '/bin/saveFile.php';
-        $args = [$bin, $url, $dst];
-        $command = '';
+        $this->runHidev('file/fetch', [$file->getId()]);
+    }
+
+    public function probeFile(File $file): void
+    {
+        $this->runHidev('file/probe', [$file->getId()]);
+    }
+
+    protected function runHidev($route, array $args, $wait = false): void
+    {
+        $command = Yii::getAlias('@vendor/bin/hidev') . ' ' . $route;
         foreach ($args as $arg) {
-            $command .= escapeshellarg($arg) . ' ';
+            $command .= ' ' . escapeshellarg($arg);
         }
-        exec("$command >> /dev/null 2>&1 &");
+        $amp = $wait ? '' : '&';
+        exec("$command >> /dev/null 2>&1 $amp");
     }
 
     public function getDestination(File $file): string
     {
-        $dir = Yii::getAlias('@webroot/file/');
+        $dir = Yii::getAlias('@root/web/file/');
 
         return $dir . $this->getFilePath($file);
     }
