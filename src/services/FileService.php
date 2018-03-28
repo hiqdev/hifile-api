@@ -8,6 +8,7 @@ use transmedia\signage\file\api\domain\file\FileFactoryInterface;
 use transmedia\signage\file\api\domain\file\FileRepositoryInterface;
 use transmedia\signage\file\api\domain\file\FileServiceInterface;
 use transmedia\signage\file\api\domain\file\FileCreationDto;
+use transmedia\signage\file\api\providers\ProviderInterface;
 use transmedia\signage\file\api\providers\ProviderFactoryInterface;
 
 /**
@@ -39,24 +40,12 @@ class FileService implements FileServiceInterface
     public function create(FileCreationDto $dto): File
     {
         if (!$dto->provider && $dto->url) {
-            $this->detectProvider($dto);
+            $this->providerFactory->detect($dto);
         }
         $file = $this->factory->create($dto);
         $this->repository->create($file);
 
         return $file;
-    }
-
-    protected function detectProvider(FileCreationDto $dto)
-    {
-        $info = parse_url($dto->url);
-        if (isset($info['host']) && $info['host'] === 'cdn.filestackcontent.com') {
-            $dto->provider = 'filestack';
-            $dto->remoteid = trim($info['path'], '/');
-            return;
-        }
-
-        throw new \Exception('cannot detect file provider');
     }
 
     /**
@@ -103,10 +92,25 @@ class FileService implements FileServiceInterface
 
     public function updateMetadata(File $file): void
     {
-        $provider = $this->providerFactory->get($file->getProvider());
         $handle = $file->getRemoteId();
+        $provider = $this->getProvider($file);
         $metadata = $provider->getMetaData($handle);
         $file->setMetaData($metadata);
         $this->repository->persist($file);
+    }
+
+    protected function getProvider(File $file): ProviderInterface
+    {
+        return $this->providerFactory->get($file->getProvider());
+    }
+
+    public function getRemoteUrl(File $file): string
+    {
+        return $this->getProvider($file)->getRemoteUrl($file);
+    }
+
+    public function saveFile(File $file): void
+    {
+        /// exec("");
     }
 }
