@@ -119,7 +119,6 @@ class FileService implements FileServiceInterface
 
     public function saveFile(File $file): void
     {
-        $this->ensureMetadata($file);
         $url = $this->getRemoteUrl($file);
         $dst = $this->getDestination($file);
         $bin = dirname(__DIR__) . '/bin/saveFile.php';
@@ -140,6 +139,7 @@ class FileService implements FileServiceInterface
 
     public function getFilePath(File $file): string
     {
+        $this->ensureMetadata($file);
         $prefix = $this->getPrefix($file);
         $id = $file->getId();
         $filename = $file->getFilename();
