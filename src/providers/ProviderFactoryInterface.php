@@ -2,6 +2,8 @@
 
 namespace transmedia\signage\file\api\providers;
 
+use transmedia\signage\file\api\domain\file\FileCreationDto;
+
 /**
  * ProviderFactoryInterface
  *
@@ -9,5 +11,7 @@ namespace transmedia\signage\file\api\providers;
  */
 interface ProviderFactoryInterface
 {
+    public function detect(FileCreationDto $dto): void;
+
     public function get(string $id): ProviderInterface;
 }

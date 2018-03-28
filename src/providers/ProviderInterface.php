@@ -2,6 +2,9 @@
 
 namespace transmedia\signage\file\api\providers;
 
+use transmedia\signage\file\api\domain\file\File;
+use transmedia\signage\file\api\domain\file\FileCreationDto;
+
 /**
  * ProviderInterface
  *
@@ -10,4 +13,8 @@ namespace transmedia\signage\file\api\providers;
 interface ProviderInterface
 {
     public function getMetaData($id): array;
+
+    public function getRemoteUrl(File $file): string;
+
+    public static function detect(FileCreationDto $dto): bool;
 }

@@ -2,6 +2,7 @@
 
 namespace transmedia\signage\file\api\providers;
 
+use transmedia\signage\file\api\domain\file\FileCreationDto;
 use yii\di\Container;
 
 /**
@@ -11,17 +12,34 @@ use yii\di\Container;
  */
 class ProviderFactory implements ProviderFactoryInterface
 {
+    protected $providers = [
+        'filestack' => FilestackProvider::class,
+    ];
+
     public function __construct(Container $container)
     {
         $this->container = $container;
     }
 
-    public function get(string $id): ProviderInterface
+    public function detect(FileCreationDto $dto): void
     {
-        if ('filestack' === strtolower($id)) {
-            return $this->container->get(FilestackProvider::class);
+        foreach ($this->providers as $id => $class) {
+            if ($class::detect($dto)) {
+                $dto->provider = $id;
+                return;
+            }
         }
 
-        throw new \Exception("unknown provider: $id");
+        throw new \Exception('cannot detect file provider');
+
+    }
+
+    public function get(string $id): ProviderInterface
+    {
+        if (empty($this->providers[$id])) {
+            throw new \Exception("unknown provider: $id");
+        }
+
+        return $this->container->get($this->providers[$id]);
     }
 }
