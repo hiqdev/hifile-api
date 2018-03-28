@@ -4,6 +4,7 @@ namespace transmedia\signage\file\api\controllers;
 
 use transmedia\signage\file\api\domain\file\FileServiceInterface;
 use yii\base\Module;
+use Yii;
 
 /**
  * Class ApiController
@@ -27,7 +28,13 @@ class ProxyController extends \yii\web\Controller
     public function actionProxify($prefix, $id)
     {
         $file = $this->fileService->findOneOrFail($id);
-        $this->fileService->ensureMetadata($file);
+
+        $current = Yii::$app->request->getUrl();
+        $canonic = $this->fileService->getUrl($file);
+        if ($current !== $canonic) {
+            return $this->redirect($canonic);
+        }
+
         $this->fileService->saveFile($file);
         $url = $this->fileService->getRemoteUrl($file);
 

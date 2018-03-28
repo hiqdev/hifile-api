@@ -2,6 +2,7 @@
 
 namespace transmedia\signage\file\api\services;
 
+use Ramsey\Uuid\Uuid;
 use hiqdev\yii\DataMapper\query\Specification;
 use transmedia\signage\file\api\domain\file\File;
 use transmedia\signage\file\api\domain\file\FileFactoryInterface;
@@ -10,6 +11,7 @@ use transmedia\signage\file\api\domain\file\FileServiceInterface;
 use transmedia\signage\file\api\domain\file\FileCreationDto;
 use transmedia\signage\file\api\providers\ProviderInterface;
 use transmedia\signage\file\api\providers\ProviderFactoryInterface;
+use Yii;
 
 /**
  * Class FileService
@@ -76,7 +78,8 @@ class FileService implements FileServiceInterface
 
     public function findOneOrFail($id)
     {
-        $spec = (new Specification())->where(['id' => $id]);
+        $uuid = Uuid::fromString($id);
+        $spec = (new Specification())->where(['id' => $uuid->toString()]);
 
         return $this->repository->findOneOrFail($spec);
     }
@@ -109,8 +112,43 @@ class FileService implements FileServiceInterface
         return $this->getProvider($file)->getRemoteUrl($file);
     }
 
+    public function getUrl(File $file): string
+    {
+        return '/file/' . $this->getFilePath($file);
+    }
+
     public function saveFile(File $file): void
     {
-        /// exec("");
+        $this->ensureMetadata($file);
+        $url = $this->getRemoteUrl($file);
+        $dst = $this->getDestination($file);
+        $bin = dirname(__DIR__) . '/bin/saveFile.php';
+        $args = [$bin, $url, $dst];
+        $command = '';
+        foreach ($args as $arg) {
+            $command .= escapeshellarg($arg) . ' ';
+        }
+        exec("$command >> /dev/null 2>&1 &");
+    }
+
+    public function getDestination(File $file): string
+    {
+        $dir = Yii::getAlias('@webroot/file/');
+
+        return $dir . $this->getFilePath($file);
+    }
+
+    public function getFilePath(File $file): string
+    {
+        $prefix = $this->getPrefix($file);
+        $id = $file->getId();
+        $filename = $file->getFilename();
+
+        return "$prefix/$id/$filename";
+    }
+
+    public function getPrefix(File $file): string
+    {
+        return $file->getId()->getClockSeqLowHex();
     }
 }
