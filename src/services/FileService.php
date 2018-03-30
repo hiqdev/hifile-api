@@ -134,7 +134,7 @@ class FileService implements FileServiceInterface
             $command .= ' ' . escapeshellarg($arg);
         }
         $amp = $wait ? '' : '&';
-        exec("$command >> /dev/null 2>&1 $amp");
+        exec("$command > /dev/null 2>&1 $amp");
     }
 
     public function getDestination(File $file): string
