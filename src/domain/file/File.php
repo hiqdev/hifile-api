@@ -69,12 +69,12 @@ class File
     private $filename;
 
     /**
-     * @var string DateTimeImmutable
+     * @var DateTimeImmutable
      */
     private $create_time;
 
     /**
-     * @var string DateTimeImmutable
+     * @var DateTimeImmutable
      */
     private $update_time;
 
