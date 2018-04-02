@@ -21,17 +21,23 @@ use Yii;
 class FileService implements FileServiceInterface
 {
     /**
-     * @var FileRepositoryInterface
-     */
-    private $repository;
-    /**
      * @var FileFactoryInterface
      */
     private $factory;
 
+    /**
+     * @var FileRepositoryInterface
+     */
+    private $repository;
+
+    /**
+     * @var ProviderFactoryInterface
+     */
+    private $providerFactory;
+
     public function __construct(
-        FileRepositoryInterface $fileRepository,
         FileFactoryInterface $fileFactory,
+        FileRepositoryInterface $fileRepository,
         ProviderFactoryInterface $providerFactory
     ) {
         $this->repository = $fileRepository;
