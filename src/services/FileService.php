@@ -104,7 +104,17 @@ class FileService implements FileServiceInterface
         $handle = $file->getRemoteId();
         $provider = $this->getProvider($file);
         $metadata = $provider->getMetaData($handle);
+        $this->setMetaData($file, $metadata);
+    }
+
+    public function setMetaData(File $file, array $metadata): void
+    {
         $file->setMetaData($metadata);
+        $this->persist($file);
+    }
+
+    public function persist(File $file): void
+    {
         $this->repository->persist($file);
     }
 
