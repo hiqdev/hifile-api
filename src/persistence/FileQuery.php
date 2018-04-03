@@ -26,6 +26,7 @@ class FileQuery extends Query
             'mimetype'      => 'fm.name',
             'filename'      => 'zf.filename',
             'size'          => 'zf.size',
+            'data'          => 'zf.data',
             'type'          => 'ft.name',
             'type_id'       => 'zf.type_id',
             'state'         => 'fs.name',

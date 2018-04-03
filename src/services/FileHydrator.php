@@ -9,6 +9,7 @@ use hiqdev\yii\DataMapper\hydrator\RootHydratorAwareTrait;
 use Ramsey\Uuid\Uuid;
 use Zend\Hydrator\HydrationInterface;
 use Zend\Hydrator\HydratorInterface;
+use yii\helpers\Json;
 
 /**
  * Class FileHydrator
@@ -30,6 +31,9 @@ class FileHydrator implements HydratorInterface
     {
         if (!empty($data['id'])) {
             $data['id'] = Uuid::fromString($data['id']);
+        }
+        if (!empty($data['data'])) {
+            $data['data'] = Json::decode($data['data']);
         }
         if (!empty($data['create_time'])) {
             $data['create_time'] = new DateTimeImmutable($data['create_time']);
@@ -59,6 +63,7 @@ class FileHydrator implements HydratorInterface
             'state'         => $object->getState(),
             'label'         => $object->getLabel(),
             'descr'         => $object->getDescr(),
+            'data'          => $object->getData(),
             'create_time'   => $this->time2iso($object->getCreateTime()),
             'update_time'   => $this->time2iso($object->getUpdateTime()),
         ]);

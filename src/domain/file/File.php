@@ -78,6 +78,11 @@ class File
      */
     private $update_time;
 
+    /**
+     * @var array
+     */
+    private $data = [];
+
     public function __construct($client_id, $provider, $remoteid)
     {
         $this->client_id = $client_id;
@@ -225,12 +230,21 @@ class File
     {
         $this->descr = $descr;
     }
+    public function getData(): array
+    {
+        return $this->data;
+    }
+
     public function setMetaData(array $data): void
     {
         foreach (['size','filename','mimetype'] as $key) {
             if (!empty($data[$key])) {
                 $this->{$key} = $data[$key];
+                unset($data[$key]);
             }
         }
+        $this->data = array_merge($this->data, $data);
+        var_dump($data, $this->data);
     }
+
 }
