@@ -3,6 +3,7 @@
 namespace transmedia\signage\file\api\services;
 
 use Ramsey\Uuid\Uuid;
+use hiapi\exceptions\domain\InvariantException;
 use hiqdev\yii\DataMapper\query\Specification;
 use transmedia\signage\file\api\domain\file\File;
 use transmedia\signage\file\api\domain\file\FileFactoryInterface;
@@ -50,12 +51,21 @@ class FileService implements FileServiceInterface
         if (!$dto->provider && $dto->url) {
             $this->providerFactory->detect($dto);
         }
+		$this->ensureRemoteIdIsUnique($dto->remoteid);
         $file = $this->factory->create($dto);
         $this->repository->create($file);
 
         return $file;
     }
 
+    protected function ensureRemoteIdIsUnique($remoteid): void
+    {
+        $spec = (new Specification())->where(['remoteid' => $remoteid]);
+        $file = $this->repository->findOne($spec);
+        if ($file) {
+            throw new InvariantException('Given `remoteid` already exists');
+        }
+    }
     /**
      * @param int $id
      * @param string $type
