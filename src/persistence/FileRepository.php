@@ -14,6 +14,7 @@ use transmedia\signage\file\api\domain\file\FileFactoryInterface;
 use transmedia\signage\file\api\domain\file\FileRepositoryInterface;
 use yii\db\Query;
 use yii\filters\auth\QueryParamAuth;
+use yii\helpers\Json;
 
 /**
  * Class FileRepository
@@ -81,13 +82,14 @@ class FileRepository extends BaseRepository implements FileRepositoryInterface
         $query = (new Query())->select([
             new CallExpression('set_file', new HstoreExpression([
                 'id'        => $file->getId(),
-                'mimetype'  => $file->getMimeType(),
-                'filename'  => $file->getFilename(),
-                'size'      => $file->getSize(),
                 'label'     => $file->getLabel(),
                 'descr'     => $file->getDescr(),
                 'type'      => $file->getType(),
                 'state'     => $file->getState(),
+                'mimetype'  => $file->getMimeType(),
+                'filename'  => $file->getFilename(),
+                'size'      => $file->getSize(),
+                'data'      => Json::encode($file->getData()),
             ]))
         ]);
         $id = $query->scalar();
