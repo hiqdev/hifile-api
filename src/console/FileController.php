@@ -50,7 +50,7 @@ class FileController extends \yii\console\Controller
         $file = $this->fileService->findOneOrFail($id);
         $dst = $this->fileService->getDestination($file);
         if (!file_exists($dst)) {
-            $this->actionFetch($file);
+            $this->fetch($file);
         }
 
         $proc = $this->processorFactory->get($file);
