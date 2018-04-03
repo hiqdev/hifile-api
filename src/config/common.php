@@ -63,7 +63,7 @@ return [
                 '__class' => \transmedia\signage\file\api\processors\ProcessorFactory::class,
                 'processors' => [
                     'image' => \transmedia\signage\file\api\processors\BuiltinImageProcessor::class,
-                    'video' => \transmedia\signage\file\api\processors\FfmepgProcessor::class,
+                    'video' => \transmedia\signage\file\api\processors\FfmpegProcessor::class,
                 ],
             ],
         ],
