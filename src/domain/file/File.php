@@ -33,7 +33,8 @@ class File
     /**
      * @var text
      * Eg. FileStack ID: ttc9Vr9SjybPZ0W3Frys
-     *               URL: https://cdn.filestackcontent.com/ttc9Vr9SjybPZ0W3Frys
+     *      image png URL: https://cdn.filestackcontent.com/ttc9Vr9SjybPZ0W3Frys
+     *      video mkv URL: https://cdn.filestackcontent.com/5aDSmbOWQiSiSHeP6KeR
      */
     private $remoteid;
 
