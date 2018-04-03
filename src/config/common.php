@@ -58,6 +58,14 @@ return [
                     0 => $params['filestack.apiKey'],
                 ],
             ],
+        /// processors
+            \transmedia\signage\file\api\processors\ProcessorFactoryInterface::class => [
+                '__class' => \transmedia\signage\file\api\processors\ProcessorFactory::class,
+                'processors' => [
+                    'image' => \transmedia\signage\file\api\processors\BuiltinImageProcessor::class,
+                    'video' => \transmedia\signage\file\api\processors\FfmepgProcessor::class,
+                ],
+            ],
         ],
     ],
 ];
