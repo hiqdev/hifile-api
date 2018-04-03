@@ -42,7 +42,7 @@ class FileController extends \yii\console\Controller
     {
         $file = $this->fileService->findOneOrFail($id);
 
-        $this->fetch($url, $dst);
+        $this->fetch($file);
     }
 
     public function actionProbe($id)
