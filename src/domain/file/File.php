@@ -244,8 +244,7 @@ class File
                 unset($data[$key]);
             }
         }
-        $this->data = array_merge($this->data, $data);
-        var_dump($data, $this->data);
+        $this->data = array_merge($this->data ?? [], $data);
     }
 
 }
