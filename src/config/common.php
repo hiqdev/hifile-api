@@ -66,6 +66,19 @@ return [
                     'video' => \transmedia\signage\file\api\processors\FfmpegProcessor::class,
                 ],
             ],
+        /// events
+            'file.event-listener' => [
+                '__class' => \hiapi\event\PublishToQueueListener::class,
+                'queue' => 'file.events',
+            ],
+            \League\Event\EmitterInterface::class => [
+                'listeners' => [
+                    'file' => [
+                        'event' => 'File*',
+                        'listener' => 'file.event-listener',
+                    ],
+                ],
+            ],
         ],
     ],
 ];
