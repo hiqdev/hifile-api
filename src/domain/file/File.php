@@ -13,6 +13,8 @@ use Ramsey\Uuid\Uuid;
  */
 class File
 {
+    use League\GeneratorTrait;
+
     const TYPE_NORMAL = 'normal';
 
     const STATE_NEW = 'new';
@@ -90,6 +92,7 @@ class File
         $this->client_id = $client_id;
         $this->provider = $provider;
         $this->remoteid = $remoteid;
+        $this->addEvent(new FileWasCreated($this));
     }
 
     /**
