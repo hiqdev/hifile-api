@@ -5,6 +5,7 @@ namespace transmedia\signage\file\api\services;
 use Ramsey\Uuid\Uuid;
 use hiapi\event\EventStorageInterface;
 use hiapi\exceptions\domain\InvariantException;
+use hidev\helpers\Hidev;
 use hiqdev\yii\DataMapper\query\Specification;
 use transmedia\signage\file\api\domain\file\File;
 use transmedia\signage\file\api\domain\file\FileFactoryInterface;
@@ -147,24 +148,14 @@ class FileService implements FileServiceInterface
         return '/file/' . $this->getFilePath($file);
     }
 
-    public function fetchFile(File $file): void
+    public function execFetch(File $file): void
     {
-        $this->runHidev('file/fetch', [$file->getId()]);
+        Hidev::exec('file/fetch', [$file->getId()]);
     }
 
-    public function probeFile(File $file): void
+    public function execProbe(File $file): void
     {
-        $this->runHidev('file/probe', [$file->getId()]);
-    }
-
-    protected function runHidev($route, array $args, $wait = false): void
-    {
-        $command = Yii::getAlias('@vendor/bin/hidev') . ' ' . $route;
-        foreach ($args as $arg) {
-            $command .= ' ' . escapeshellarg($arg);
-        }
-        $amp = $wait ? '' : '&';
-        exec("$command > /dev/null 2>&1 $amp");
+        Hidev::exec('file/probe', [$file->getId()]);
     }
 
     public function getDestination(File $file): string
