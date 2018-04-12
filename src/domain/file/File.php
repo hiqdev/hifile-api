@@ -4,6 +4,8 @@ namespace transmedia\signage\file\api\domain\file;
 
 use DateTimeImmutable;
 use hiapi\exceptions\domain\InvariantException;
+use transmedia\signage\file\api\domain\file\events\FileWasCreated;
+use League\Event\GeneratorTrait;
 use Ramsey\Uuid\Uuid;
 
 /**
@@ -13,7 +15,7 @@ use Ramsey\Uuid\Uuid;
  */
 class File
 {
-    use League\GeneratorTrait;
+    use GeneratorTrait;
 
     const TYPE_NORMAL = 'normal';
 

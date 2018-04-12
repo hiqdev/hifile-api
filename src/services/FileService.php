@@ -3,6 +3,7 @@
 namespace transmedia\signage\file\api\services;
 
 use Ramsey\Uuid\Uuid;
+use hiapi\event\EventStorageInterface;
 use hiapi\exceptions\domain\InvariantException;
 use hiqdev\yii\DataMapper\query\Specification;
 use transmedia\signage\file\api\domain\file\File;
@@ -39,11 +40,13 @@ class FileService implements FileServiceInterface
     public function __construct(
         FileFactoryInterface $fileFactory,
         FileRepositoryInterface $fileRepository,
-        ProviderFactoryInterface $providerFactory
+        ProviderFactoryInterface $providerFactory,
+        EventStorageInterface $eventStorage
     ) {
         $this->repository = $fileRepository;
         $this->factory = $fileFactory;
         $this->providerFactory = $providerFactory;
+        $this->eventStorage = $eventStorage;
     }
 
     public function create(FileCreationDto $dto): File
@@ -54,6 +57,7 @@ class FileService implements FileServiceInterface
 		$this->ensureRemoteIdIsUnique($dto->remoteid);
         $file = $this->factory->create($dto);
         $this->repository->create($file);
+        $this->eventStorage->store(...$file->releaseEvents());
 
         return $file;
     }

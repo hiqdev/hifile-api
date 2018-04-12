@@ -11,7 +11,7 @@ use Ramsey\Uuid\UuidInterface;
  *
  * @author Andrii Vasyliev <sol@hiqdev.com>
  */
-abstract class AbstractEvent extends \League\Event\AbstractEvent
+abstract class AbstractEvent extends \League\Event\AbstractEvent implements \JsonSerializable
 {
     /**
      * @var UuidInterface
