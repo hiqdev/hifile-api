@@ -239,7 +239,7 @@ class File
     }
     public function getData(): array
     {
-        return $this->data;
+        return $this->data ?? [];
     }
 
     public function setMetaData(array $data): void
