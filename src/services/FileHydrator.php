@@ -52,7 +52,7 @@ class FileHydrator implements HydratorInterface
     public function extract($object)
     {
         $result = array_filter([
-            'id'            => $object->getId(),
+            'id'            => $object->getId()->toString(),
             'url'           => $object->getUrl(),
             'client_id'     => $object->getClientId(),
             'provider'      => $object->getProvider(),
