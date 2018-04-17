@@ -17,6 +17,8 @@ return [
                         'search'    => \transmedia\signage\file\api\commands\FileSearchCommand::class,
                         'get-info'  => \transmedia\signage\file\api\commands\FileGetInfoCommand::class,
                         'create'    => \transmedia\signage\file\api\commands\FileCreateCommand::class,
+                        'fetch'     => \transmedia\signage\file\api\commands\FileFetchCommand::class,
+                        'probe'     => \transmedia\signage\file\api\commands\FileProbeCommand::class,
                     ],
                 ],
             ],
@@ -33,6 +35,14 @@ return [
                     ],
                     \transmedia\signage\file\api\commands\FileCreateCommand::class => [
                         [\hiapi\middlewares\AuthMiddleware::class, 'file.create'],
+                        \hiapi\middlewares\PassthroughCommandHandler::class
+                    ],
+                    \transmedia\signage\file\api\commands\FileFetchCommand::class => [
+                        [\hiapi\middlewares\AuthMiddleware::class, 'file.fetch'],
+                        \hiapi\middlewares\PassthroughCommandHandler::class
+                    ],
+                    \transmedia\signage\file\api\commands\FileProbeCommand::class => [
+                        [\hiapi\middlewares\AuthMiddleware::class, 'file.probe'],
                         \hiapi\middlewares\PassthroughCommandHandler::class
                     ],
                 ],
@@ -66,7 +76,7 @@ return [
                     'video' => \transmedia\signage\file\api\processors\FfmpegProcessor::class,
                 ],
             ],
-        /// events
+        /// events publishing
             'file.event-listener' => [
                 '__class' => \hiapi\event\PublishToQueueListener::class,
                 'queue' => 'file.events',

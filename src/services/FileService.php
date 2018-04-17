@@ -14,6 +14,7 @@ use transmedia\signage\file\api\domain\file\FileServiceInterface;
 use transmedia\signage\file\api\domain\file\FileCreationDto;
 use transmedia\signage\file\api\providers\ProviderInterface;
 use transmedia\signage\file\api\providers\ProviderFactoryInterface;
+use transmedia\signage\file\api\processors\ProcessorFactoryInterface;
 use Yii;
 
 /**
@@ -38,15 +39,27 @@ class FileService implements FileServiceInterface
      */
     private $providerFactory;
 
+    /**
+     * @var ProcessorFactoryInterface
+     */
+    private $processorFactory;
+
+    /**
+     * @var EventStorageInterface
+     */
+    private $eventStorage;
+
     public function __construct(
         FileFactoryInterface $fileFactory,
         FileRepositoryInterface $fileRepository,
         ProviderFactoryInterface $providerFactory,
+        ProcessorFactoryInterface $processorFactory,
         EventStorageInterface $eventStorage
     ) {
         $this->repository = $fileRepository;
         $this->factory = $fileFactory;
         $this->providerFactory = $providerFactory;
+        $this->processorFactory = $processorFactory;
         $this->eventStorage = $eventStorage;
     }
 
@@ -55,7 +68,7 @@ class FileService implements FileServiceInterface
         if (!$dto->provider && $dto->url) {
             $this->providerFactory->detect($dto);
         }
-		$this->ensureRemoteIdIsUnique($dto->remoteid);
+        $this->ensureRemoteIdIsUnique($dto->remoteid);
         $file = $this->factory->create($dto);
         $this->repository->create($file);
         $this->eventStorage->store(...$file->releaseEvents());
@@ -178,5 +191,58 @@ class FileService implements FileServiceInterface
     public function getPrefix(File $file): string
     {
         return $file->getId()->getClockSeqLowHex();
+    }
+
+    public function probe(File $file)
+    {
+        $dst = $this->getDestination($file);
+        if (!file_exists($dst)) {
+            $this->fetch($file);
+        }
+
+        $proc = $this->processorFactory->get($file);
+        $info = $proc->collectInfo($dst);
+        $this->setMetaData($file, $info);
+    }
+
+    public function fetch(File $file): void
+    {
+        $dst = $this->getDestination($file);
+        if (file_exists($dst)) {
+            return;
+        }
+
+        $dir = dirname($dst);
+        if (!file_exists($dir)) {
+            exec("mkdir -p $dir");
+        }
+        $lock = fopen("$dir/.fetching", "c");
+
+        if (!$lock || !flock($lock, LOCK_EX | LOCK_NB)) {
+            throw new \Exception('already working');
+        }
+
+        $url = $this->getRemoteUrl($file);
+        $this->exec('/usr/bin/curl', ['-o', $dst, $url]);
+        if (!file_exists($dst)) {
+            throw new \Exception("failed fetch file: {$file->getId()}");
+        }
+    }
+
+    protected function exec($prog, array $args): array
+    {
+        $skips = [
+            '> /dev/null' => 1,
+            '2>&1' => 1,
+        ];
+        $command = $prog;
+        foreach ($args as $arg) {
+            $arg = isset($skips[$arg]) ? $arg : escapeshellarg($arg);
+            $command .= ' ' . $arg;
+        }
+
+        exec($command, $output);
+
+        return $output;
     }
 }
