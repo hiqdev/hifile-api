@@ -12,6 +12,7 @@ use transmedia\signage\file\api\domain\file\FileFactoryInterface;
 use transmedia\signage\file\api\domain\file\FileRepositoryInterface;
 use transmedia\signage\file\api\domain\file\FileServiceInterface;
 use transmedia\signage\file\api\domain\file\FileCreationDto;
+use transmedia\signage\file\api\services\FileNotifier;
 use transmedia\signage\file\api\providers\ProviderInterface;
 use transmedia\signage\file\api\providers\ProviderFactoryInterface;
 use transmedia\signage\file\api\processors\ProcessorFactoryInterface;
@@ -52,12 +53,14 @@ class FileService implements FileServiceInterface
     public function __construct(
         FileFactoryInterface $fileFactory,
         FileRepositoryInterface $fileRepository,
+        FileNotifierInterface $fileNotifier,
         ProviderFactoryInterface $providerFactory,
         ProcessorFactoryInterface $processorFactory,
         EventStorageInterface $eventStorage
     ) {
-        $this->repository = $fileRepository;
         $this->factory = $fileFactory;
+        $this->repository = $fileRepository;
+        $this->notifier = $fileNotifier;
         $this->providerFactory = $providerFactory;
         $this->processorFactory = $processorFactory;
         $this->eventStorage = $eventStorage;
@@ -188,6 +191,11 @@ class FileService implements FileServiceInterface
         $this->ensureMetadata($file);
 
         return Url::buildPathFromFile($file);
+    }
+
+    public function notify(File $file)
+    {
+        $this->notifier->notify($file);
     }
 
     public function probe(File $file)
