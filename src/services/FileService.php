@@ -71,9 +71,14 @@ class FileService implements FileServiceInterface
         $this->ensureRemoteIdIsUnique($dto->remoteid);
         $file = $this->factory->create($dto);
         $this->repository->create($file);
-        $this->eventStorage->store(...$file->releaseEvents());
+        $this->releaseEvents($file);
 
         return $file;
+    }
+
+    protected function releaseEvents(File $file): void
+    {
+        $this->eventStorage->store(...$file->releaseEvents());
     }
 
     protected function ensureRemoteIdIsUnique($remoteid): void
@@ -158,7 +163,7 @@ class FileService implements FileServiceInterface
 
     public function getUrl(File $file): string
     {
-        return '/file/' . $this->getFilePath($file);
+        return $file->getUrl();
     }
 
     public function execFetch(File $file): void
@@ -181,16 +186,8 @@ class FileService implements FileServiceInterface
     public function getFilePath(File $file): string
     {
         $this->ensureMetadata($file);
-        $prefix = $this->getPrefix($file);
-        $id = $file->getId();
-        $filename = $file->getFilename();
 
-        return "$prefix/$id/$filename";
-    }
-
-    public function getPrefix(File $file): string
-    {
-        return $file->getId()->getClockSeqLowHex();
+        return Url::buildPathFromFile($file);
     }
 
     public function probe(File $file)
@@ -202,7 +199,9 @@ class FileService implements FileServiceInterface
 
         $proc = $this->processorFactory->get($file);
         $info = $proc->collectInfo($dst);
+        $file->setReady();
         $this->setMetaData($file, $info);
+        $this->releaseEvents($file);
     }
 
     public function fetch(File $file): void

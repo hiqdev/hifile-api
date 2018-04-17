@@ -5,6 +5,7 @@ namespace transmedia\signage\file\api\domain\file;
 use DateTimeImmutable;
 use hiapi\exceptions\domain\InvariantException;
 use transmedia\signage\file\api\domain\file\events\FileWasCreated;
+use transmedia\signage\file\api\domain\file\events\FileGotReady;
 use League\Event\GeneratorTrait;
 use Ramsey\Uuid\Uuid;
 
@@ -190,6 +191,14 @@ class File
     public function getFilename(): ?string
     {
         return $this->filename;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl(): string
+    {
+        return Url::build($this);
     }
 
     /**

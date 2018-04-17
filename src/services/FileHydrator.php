@@ -53,7 +53,7 @@ class FileHydrator implements HydratorInterface
     {
         $result = array_filter([
             'id'            => $object->getId(),
-            'url'           => "/file/a/{$object->getId()}/a", /// XXX not sure if should be here
+            'url'           => $object->getUrl(),
             'client_id'     => $object->getClientId(),
             'provider'      => $object->getProvider(),
             'remoteid'      => $object->getRemoteId(),
