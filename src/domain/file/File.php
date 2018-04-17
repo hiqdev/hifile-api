@@ -20,7 +20,7 @@ class File
     const TYPE_NORMAL = 'normal';
 
     const STATE_NEW = 'new';
-    const STATE_OK = 'ok';
+    const STATE_READY = 'ready';
     const STATE_DELETED = 'deleted';
 
     /** @var Uuid */
@@ -94,6 +94,7 @@ class File
         $this->client_id = $client_id;
         $this->provider = $provider;
         $this->remoteid = $remoteid;
+        $this->state = self::STATE_NEW;
         $this->addEvent(new FileWasCreated($this));
     }
 
@@ -158,7 +159,13 @@ class File
      */
     public function getState(): ?string
     {
-        return $this->state;
+        return $this->state ?: self::STATE_NEW;
+    }
+
+    public function setReady(): void
+    {
+        $this->state = self::STATE_READY;
+        $this->addEvent(new FileGotReady($this));
     }
 
     /**
