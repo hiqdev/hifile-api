@@ -34,8 +34,8 @@ class FfmpegProcessor implements ProcessorInterface
         $lines = $this->ffmpeg(['-i', $path, '2>&1']);
 
         foreach ($lines as $line) {
-            if (strpos($line, 'Duration') && preg_match('/Duration: (\d{2,4}):(\d{2}):(\d{2})/', $line, $matches)) {
-                $duration = round(($matches[1]*60*60) + ($matches[2]*60) + $matches[3]);
+            if (strpos($line, 'Duration') && preg_match('/Duration: (\d{2,4}):(\d{2}):(\d{2}\.\d+)/', $line, $matches)) {
+                $duration = round(($matches[1]*60*60) + ($matches[2]*60) + ceil($matches[3]));
             }
             if (strpos($line, 'Video') && preg_match('/ (\d{3,5}x\d{3,5})/', $line, $matches)) {
                 $resolution = $matches[1];
