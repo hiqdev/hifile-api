@@ -15,4 +15,31 @@ return [
             'class' => \transmedia\signage\file\api\console\FileController::class,
         ],
     ],
+    'container' => [
+        'singletons' => [
+            'console.default-user' => [
+                'roles' => [
+                    'files' => 'role:file.manager',
+                ],
+            ],
+        /// events consuming
+            \hiqdev\yii2\autobus\components\AutoBusFactoryInterface::class => [
+                'mapping' => [
+                    'file.events' => 'queue-bus.router-for.file.events',
+                ],
+            ],
+            'queue-bus.router-for.file.events' => [
+                '__class' => \hiqdev\yii2\autobus\components\BranchedAutoBus::class,
+                '__construct()' => [
+                    0 => \yii\di\Instance::of('bus.the-bus'),
+                ],
+                'branches' => [
+                    'file' => [
+                        'was-created' => \transmedia\signage\file\api\commands\FileProbeCommand::class,
+                        'got-ready' => \transmedia\signage\file\api\commands\FileNotifyCommand::class,
+                    ],
+                ],
+            ],
+        ],
+    ],
 ];
