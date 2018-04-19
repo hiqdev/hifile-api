@@ -40,6 +40,7 @@
         "hiqdev/hiapi": "v2.x-dev",
         "ramsey/uuid": "^3.7",
         "filestack/filestack-php": "^1.1",
+        "claviska/simpleimage": "^3.3",
         "transmedia/hipanel-rbac": "<2.0 || dev-master",
         "transmedia/signage-file-sql": "<2.0 || dev-master"
     },
