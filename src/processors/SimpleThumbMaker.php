@@ -27,8 +27,8 @@ class SimpleThumbMaker implements ThumbMakerInterface
     {
         $image = new SimpleImage($src);
 
-        $image->resize($width)
-            ->crop(0, 0, $width, $height)
+        $image->resize($this->width)
+            ->crop(0, 0, $this->width, $this->height)
             ->toFile($dst);
     }
 }
