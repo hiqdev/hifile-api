@@ -86,6 +86,11 @@ return [
                     'video' => \transmedia\signage\file\api\processors\FfmpegProcessor::class,
                 ],
             ],
+            \transmedia\signage\file\api\processors\ThumbMakerInterface::class => [
+                '__class'   => \transmedia\signage\file\api\processors\SimpleThumbMaker::class,
+                'width'     => 320,
+                'height'    => 240,
+            ],
         /// events publishing
             'file.event-listener' => [
                 '__class' => \hiapi\event\PublishToQueueListener::class,

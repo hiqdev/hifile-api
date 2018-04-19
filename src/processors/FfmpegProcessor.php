@@ -23,13 +23,16 @@ class FfmpegProcessor implements ProcessorInterface
 
     protected $version;
 
-    public function __construct(string $binDir = '@root/ffmpeg', string $version = 'release')
+    protected $thumbMaker;
+
+    public function __construct(string $binDir = '@root/ffmpeg', string $version = 'release', ThumbMakerInterface $thumbMaker)
     {
         $this->binDir = $this->prepareDir($binDir);
         $this->version = $version;
+        $this->thumbMaker = $thumbMaker;
     }
 
-    public function collectInfo(string $path): array
+    public function processFile(string $path): array
     {
         $lines = $this->ffmpeg(['-i', $path, '2>&1']);
 
@@ -42,15 +45,21 @@ class FfmpegProcessor implements ProcessorInterface
             }
         }
 
+        $this->createThumbnail($path, $duration);
+
         return array_filter([
             'duration'      => $duration,
             'resolution'    => $resolution,
         ]);
     }
 
-    public function createThumbnail(string $path): string
+    public function createThumbnail(string $path, $duration): void
     {
-        die(__METHOD__);
+        $frame = dirname($path) . '/frame.jpg';
+        $thumb = dirname($path) . '/thumb.jpg';
+        $position = (int)($duration * (rand(30,80)/100));
+        $this->ffmpeg(['-y', '-i', $path, '-vframes', 1, '-ss', $position, $frame]);
+        $this->thumbMaker->make($frame, $thumb);
     }
 
     protected function ffmpeg($args): array

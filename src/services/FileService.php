@@ -12,6 +12,7 @@ use transmedia\signage\file\api\domain\file\FileFactoryInterface;
 use transmedia\signage\file\api\domain\file\FileRepositoryInterface;
 use transmedia\signage\file\api\domain\file\FileServiceInterface;
 use transmedia\signage\file\api\domain\file\FileCreationDto;
+use transmedia\signage\file\api\domain\file\Url;
 use transmedia\signage\file\api\services\FileNotifier;
 use transmedia\signage\file\api\providers\ProviderInterface;
 use transmedia\signage\file\api\providers\ProviderFactoryInterface;
@@ -206,7 +207,7 @@ class FileService implements FileServiceInterface
         }
 
         $proc = $this->processorFactory->get($file);
-        $info = $proc->collectInfo($dst);
+        $info = $proc->processFile($dst);
         $file->setReady();
         $this->setMetaData($file, $info);
         $this->releaseEvents($file);

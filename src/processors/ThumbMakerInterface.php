@@ -11,14 +11,15 @@
 namespace transmedia\signage\file\api\processors;
 
 /**
- * ProcessorInterface
+ * ThumbMakerInterface
  *
  * @author Andrii Vasyliev <sol@hiqdev.com>
  */
-interface ProcessorInterface
+interface ThumbMakerInterface
 {
     /**
-     * @return array array with file information: resolution, duration if available
+     * @param string $src source path
+     * @param string $dst destination path
      */
-    public function processFile(string $path): array;
+    public function make(string $src, string $dst): void;
 }
