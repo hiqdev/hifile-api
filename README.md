@@ -11,21 +11,29 @@
 
 ## Installation
 
-The preferred way to install this yii2-extension is through [composer](http://getcomposer.org/download/).
+Find your root project: `transmedia/file.api.screens.media` in my case.
 
-Either run
+Fetch the root project with git and install it with composer:
 
 ```sh
-php composer.phar require "hiqdev/hifile-api"
+git clone git@git.hiqdev.com:transmedia/file.api.screens.media
+cd file.api.screens.media
+composer install
 ```
 
-or add
+Setup environment variables: copy and tune `.env.example` file.
+There aren't many options there, check and set all of them thouroughly.
 
-```json
-"hiqdev/hifile-api": "*"
+```sh
+cp .env.example .env
+vim .env
 ```
 
-to the require section of your composer.json.
+After changing environment variables refresh config with:
+
+```sh
+composer dump
+```
 
 ## License
 
