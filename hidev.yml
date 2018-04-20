@@ -1,5 +1,6 @@
 package:
     type:       yii2-extension
-    name:       signage-file-api
-    title:      Signage File API server
-    keywords:   digital signage, file, api
+    name:       hifile-api
+    title:      HiFile file server API
+    headline:   HiFile API
+    keywords:   file server

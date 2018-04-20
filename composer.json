@@ -1,20 +1,12 @@
 {
-    "name": "transmedia/signage-file-api",
+    "name": "hiqdev/hifile-api",
     "type": "yii2-extension",
     "description": "Signage File API server",
     "keywords": [
-        "digital signage",
-        "file",
-        "api"
     ],
-    "homepage": "https://github.com/transmedia/signage-file-api",
+    "homepage": "https://github.com/hiqdev/hifile-api",
     "license": "proprietary",
     "support": {
-        "email": "support@transmedia.com.ua",
-        "source": "https://git.hiqdev.com/transmedia/signage-file-api",
-        "issues": "https://git.hiqdev.com/transmedia/signage-file-api/issues",
-        "wiki": "https://git.hiqdev.com/transmedia/signage-file-api/wiki",
-        "forum": "http://forum.transmedia.com.ua/"
     },
     "authors": [
         {
@@ -41,12 +33,11 @@
         "ramsey/uuid": "^3.7",
         "filestack/filestack-php": "^1.1",
         "claviska/simpleimage": "^3.3",
-        "transmedia/hipanel-rbac": "<2.0 || dev-master",
-        "transmedia/signage-file-sql": "<2.0 || dev-master"
+        "hiqdev/hifile-sql": "<2.0 || dev-master"
     },
     "require-dev": {
         "hiqdev/hidev-php": "<2.0 || dev-master",
-        "transmedia/hidev-transmedia": "<2.0 || dev-master"
+        "hiqdev/hidev-hiqdev": "<2.0 || dev-master"
     },
     "extra": {
         "config-plugin": {
@@ -58,14 +49,14 @@
     },
     "autoload": {
         "psr-4": {
-            "transmedia\\signage\\file\\api\\": "src"
+            "hiqdev\\hifile\\api\\": "src"
         }
     },
     "minimum-stability": "dev",
     "repositories": [
         {
             "type": "composer",
-            "url": "https://packagist.hiqdev.com"
+            "url": "https://asset-packagist.org"
         }
     ]
 }
