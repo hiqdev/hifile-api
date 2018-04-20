@@ -10,8 +10,6 @@
 
 namespace transmedia\signage\file\api\processors;
 
-namespace transmedia\signage\file\api\services\ThumbMakerInterface;
-
 /**
  * class BuiltinImageProcessor
  *
@@ -26,7 +24,7 @@ class BuiltinImageProcessor implements ProcessorInterface
         $this->thumbMaker = $thumbMaker;
     }
 
-    public function collectInfo(string $path): array
+    public function processFile(string $path): array
     {
         [$width, $height] = getimagesize($path);
 
@@ -39,6 +37,7 @@ class BuiltinImageProcessor implements ProcessorInterface
 
     public function createThumbnail(string $path): string
     {
-        die(__METHOD__);
+        $thumb = dirname($path) . '/thumb.jpg';
+        $this->thumbMaker->make($path, $thumb);
     }
 }
