@@ -1,6 +1,6 @@
 <?php
 
-namespace transmedia\signage\file\api\domain;
+namespace hiqdev\hifile\api\domain;
 
 use DateTimeImmutable;
 use Ramsey\Uuid\Uuid;

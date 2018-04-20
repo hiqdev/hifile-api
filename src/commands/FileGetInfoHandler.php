@@ -1,11 +1,11 @@
 <?php
 
-namespace transmedia\signage\file\api\commands;
+namespace hiqdev\hifile\api\commands;
 
 use hiapi\commands\GetInfoHandler;
 use hiapi\commands\EntityCommandInterface;
 use hiqdev\yii\DataMapper\components\EntityManagerInterface;
-use transmedia\signage\file\api\domain\file\FileServiceInterface;
+use hiqdev\hifile\api\domain\file\FileServiceInterface;
 
 /**
  * Class FileGetInfoCommand

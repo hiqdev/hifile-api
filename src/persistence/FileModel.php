@@ -1,6 +1,6 @@
 <?php
 
-namespace transmedia\signage\file\api\persistence;
+namespace hiqdev\hifile\api\persistence;
 
 use hiqdev\yii\DataMapper\models\AbstractModel;
 use hiqdev\yii\DataMapper\query\attributes\IntegerAttribute;

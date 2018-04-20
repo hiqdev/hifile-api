@@ -1,6 +1,6 @@
 <?php
 
-namespace transmedia\signage\file\api\services;
+namespace hiqdev\hifile\api\services;
 
 use DateTime;
 use DateTimeImmutable;

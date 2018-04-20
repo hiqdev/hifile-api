@@ -1,10 +1,10 @@
 <?php
 
-namespace transmedia\signage\file\api\providers;
+namespace hiqdev\hifile\api\providers;
 
 use Filestack\FilestackClient;
-use transmedia\signage\file\api\domain\file\File;
-use transmedia\signage\file\api\domain\file\FileCreationDto;
+use hiqdev\hifile\api\domain\file\File;
+use hiqdev\hifile\api\domain\file\FileCreationDto;
 
 /**
  * class FilestackProvider

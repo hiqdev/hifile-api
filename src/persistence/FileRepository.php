@@ -1,6 +1,6 @@
 <?php
 
-namespace transmedia\signage\file\api\persistence;
+namespace hiqdev\hifile\api\persistence;
 
 use hiqdev\yii\DataMapper\components\ConnectionInterface;
 use hiqdev\yii\DataMapper\components\EntityManagerInterface;
@@ -9,9 +9,9 @@ use hiqdev\yii\DataMapper\expressions\HstoreExpression;
 use hiqdev\yii\DataMapper\query\Specification;
 use hiqdev\yii\DataMapper\repositories\BaseRepository;
 use Ramsey\Uuid\Uuid;
-use transmedia\signage\file\api\domain\file\File;
-use transmedia\signage\file\api\domain\file\FileFactoryInterface;
-use transmedia\signage\file\api\domain\file\FileRepositoryInterface;
+use hiqdev\hifile\api\domain\file\File;
+use hiqdev\hifile\api\domain\file\FileFactoryInterface;
+use hiqdev\hifile\api\domain\file\FileRepositoryInterface;
 use yii\db\Query;
 use yii\filters\auth\QueryParamAuth;
 use yii\helpers\Json;

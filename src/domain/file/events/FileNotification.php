@@ -1,8 +1,8 @@
 <?php
 
-namespace transmedia\signage\file\api\domain\file\events;
+namespace hiqdev\hifile\api\domain\file\events;
 
-use transmedia\signage\file\api\domain\AbstractEvent;
+use hiqdev\hifile\api\domain\AbstractEvent;
 
 /**
  * Class FileNotification

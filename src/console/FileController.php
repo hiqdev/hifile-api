@@ -1,11 +1,11 @@
 <?php
 
-namespace transmedia\signage\file\api\console;
+namespace hiqdev\hifile\api\console;
 
-use transmedia\signage\file\api\domain\file\File;
-use transmedia\signage\file\api\domain\file\FileServiceInterface;
-use transmedia\signage\file\api\processors\ProcessorInterface;
-use transmedia\signage\file\api\processors\ProcessorFactoryInterface;
+use hiqdev\hifile\api\domain\file\File;
+use hiqdev\hifile\api\domain\file\FileServiceInterface;
+use hiqdev\hifile\api\processors\ProcessorInterface;
+use hiqdev\hifile\api\processors\ProcessorFactoryInterface;
 use yii\base\Module;
 use Yii;
 

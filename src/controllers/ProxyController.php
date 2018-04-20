@@ -1,8 +1,8 @@
 <?php
 
-namespace transmedia\signage\file\api\controllers;
+namespace hiqdev\hifile\api\controllers;
 
-use transmedia\signage\file\api\domain\file\FileServiceInterface;
+use hiqdev\hifile\api\domain\file\FileServiceInterface;
 use yii\base\Module;
 use Yii;
 

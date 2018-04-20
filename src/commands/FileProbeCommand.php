@@ -1,6 +1,6 @@
 <?php
 
-namespace transmedia\signage\file\api\commands;
+namespace hiqdev\hifile\api\commands;
 
 use hiapi\commands\BaseCommand;
 

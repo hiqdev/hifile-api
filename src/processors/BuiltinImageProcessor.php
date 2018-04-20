@@ -8,7 +8,7 @@
  * @copyright Copyright (c) 2018, HiQDev (http://hiqdev.com/)
  */
 
-namespace transmedia\signage\file\api\processors;
+namespace hiqdev\hifile\api\processors;
 
 /**
  * class BuiltinImageProcessor

@@ -1,11 +1,11 @@
 <?php
 
-namespace transmedia\signage\file\api\domain\file;
+namespace hiqdev\hifile\api\domain\file;
 
 use DateTimeImmutable;
 use hiapi\exceptions\domain\InvariantException;
-use transmedia\signage\file\api\domain\file\events\FileWasCreated;
-use transmedia\signage\file\api\domain\file\events\FileGotReady;
+use hiqdev\hifile\api\domain\file\events\FileWasCreated;
+use hiqdev\hifile\api\domain\file\events\FileGotReady;
 use League\Event\GeneratorTrait;
 use Ramsey\Uuid\Uuid;
 

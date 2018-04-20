@@ -1,6 +1,6 @@
 <?php
 
-namespace transmedia\signage\file\api\domain\file;
+namespace hiqdev\hifile\api\domain\file;
 
 /**
  * Interface FileRepositoryInterface

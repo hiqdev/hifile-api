@@ -14,39 +14,39 @@ return [
             \hiapi\bus\ApiCommandsBusInterface::class => [
                 'branches' => [
                     'file' => [
-                        'search'    => \transmedia\signage\file\api\commands\FileSearchCommand::class,
-                        'get-info'  => \transmedia\signage\file\api\commands\FileGetInfoCommand::class,
-                        'create'    => \transmedia\signage\file\api\commands\FileCreateCommand::class,
-                        'fetch'     => \transmedia\signage\file\api\commands\FileFetchCommand::class,
-                        'probe'     => \transmedia\signage\file\api\commands\FileProbeCommand::class,
-                        'notify'    => \transmedia\signage\file\api\commands\FileNotifyCommand::class,
+                        'search'    => \hiqdev\hifile\api\commands\FileSearchCommand::class,
+                        'get-info'  => \hiqdev\hifile\api\commands\FileGetInfoCommand::class,
+                        'create'    => \hiqdev\hifile\api\commands\FileCreateCommand::class,
+                        'fetch'     => \hiqdev\hifile\api\commands\FileFetchCommand::class,
+                        'probe'     => \hiqdev\hifile\api\commands\FileProbeCommand::class,
+                        'notify'    => \hiqdev\hifile\api\commands\FileNotifyCommand::class,
                     ],
                 ],
             ],
 
             'bus.per-command-middleware' => [
                 'commandMiddlewares' => [
-                    \transmedia\signage\file\api\commands\FileSearchCommand::class => [
+                    \hiqdev\hifile\api\commands\FileSearchCommand::class => [
                         [\hiapi\middlewares\AuthMiddleware::class, 'file.read'],
                         \hiapi\middlewares\PassthroughCommandHandler::class,
                     ],
-                    \transmedia\signage\file\api\commands\FileGetInfoCommand::class => [
+                    \hiqdev\hifile\api\commands\FileGetInfoCommand::class => [
                         [\hiapi\middlewares\AuthMiddleware::class, 'file.read'],
                         \hiapi\middlewares\PassthroughCommandHandler::class,
                     ],
-                    \transmedia\signage\file\api\commands\FileCreateCommand::class => [
+                    \hiqdev\hifile\api\commands\FileCreateCommand::class => [
                         [\hiapi\middlewares\AuthMiddleware::class, 'file.create'],
                         \hiapi\middlewares\PassthroughCommandHandler::class
                     ],
-                    \transmedia\signage\file\api\commands\FileFetchCommand::class => [
+                    \hiqdev\hifile\api\commands\FileFetchCommand::class => [
                         [\hiapi\middlewares\AuthMiddleware::class, 'file.fetch'],
                         \hiapi\middlewares\PassthroughCommandHandler::class
                     ],
-                    \transmedia\signage\file\api\commands\FileProbeCommand::class => [
+                    \hiqdev\hifile\api\commands\FileProbeCommand::class => [
                         [\hiapi\middlewares\AuthMiddleware::class, 'file.probe'],
                         \hiapi\middlewares\PassthroughCommandHandler::class
                     ],
-                    \transmedia\signage\file\api\commands\FileNotifyCommand::class => [
+                    \hiqdev\hifile\api\commands\FileNotifyCommand::class => [
                         [\hiapi\middlewares\AuthMiddleware::class, 'file.notify'],
                         \hiapi\middlewares\PassthroughCommandHandler::class
                     ],
@@ -55,39 +55,39 @@ return [
 
             \hiqdev\yii\DataMapper\components\EntityManagerInterface::class => [
                 'repositories' => [
-                    \transmedia\signage\file\api\domain\file\File::class => \transmedia\signage\file\api\persistence\FileRepository::class,
+                    \hiqdev\hifile\api\domain\file\File::class => \hiqdev\hifile\api\persistence\FileRepository::class,
                 ],
             ],
             \hiqdev\yii\DataMapper\hydrator\ConfigurableAggregateHydrator::class => [
                 'hydrators' => [
-                    \transmedia\signage\file\api\domain\file\File::class => \transmedia\signage\file\api\services\FileHydrator::class,
+                    \hiqdev\hifile\api\domain\file\File::class => \hiqdev\hifile\api\services\FileHydrator::class,
                  ],
             ],
-            \transmedia\signage\file\api\domain\file\FileFactoryInterface::class => \transmedia\signage\file\api\services\FileFactory::class,
-            \transmedia\signage\file\api\domain\file\FileServiceInterface::class => \transmedia\signage\file\api\services\FileService::class,
-            \transmedia\signage\file\api\domain\file\FileRepositoryInterface::class => \transmedia\signage\file\api\persistence\FileRepository::class,
+            \hiqdev\hifile\api\domain\file\FileFactoryInterface::class => \hiqdev\hifile\api\services\FileFactory::class,
+            \hiqdev\hifile\api\domain\file\FileServiceInterface::class => \hiqdev\hifile\api\services\FileService::class,
+            \hiqdev\hifile\api\domain\file\FileRepositoryInterface::class => \hiqdev\hifile\api\persistence\FileRepository::class,
         /// notifier
-            \transmedia\signage\file\api\services\FileNotifierInterface::class => [
-                '__class' => \transmedia\signage\file\api\services\NotifyToQueue::class,
+            \hiqdev\hifile\api\services\FileNotifierInterface::class => [
+                '__class' => \hiqdev\hifile\api\services\NotifyToQueue::class,
                 'queue' => 'core.from-file',
             ],
         /// providers
-            \transmedia\signage\file\api\providers\ProviderFactoryInterface::class => \transmedia\signage\file\api\providers\ProviderFactory::class,
+            \hiqdev\hifile\api\providers\ProviderFactoryInterface::class => \hiqdev\hifile\api\providers\ProviderFactory::class,
             \Filestack\FilestackClient::class => [
                 '__construct()' => [
                     0 => $params['filestack.apiKey'],
                 ],
             ],
         /// processors
-            \transmedia\signage\file\api\processors\ProcessorFactoryInterface::class => [
-                '__class' => \transmedia\signage\file\api\processors\ProcessorFactory::class,
+            \hiqdev\hifile\api\processors\ProcessorFactoryInterface::class => [
+                '__class' => \hiqdev\hifile\api\processors\ProcessorFactory::class,
                 'processors' => [
-                    'image' => \transmedia\signage\file\api\processors\BuiltinImageProcessor::class,
-                    'video' => \transmedia\signage\file\api\processors\FfmpegProcessor::class,
+                    'image' => \hiqdev\hifile\api\processors\BuiltinImageProcessor::class,
+                    'video' => \hiqdev\hifile\api\processors\FfmpegProcessor::class,
                 ],
             ],
-            \transmedia\signage\file\api\processors\ThumbMakerInterface::class => [
-                '__class'   => \transmedia\signage\file\api\processors\SimpleThumbMaker::class,
+            \hiqdev\hifile\api\processors\ThumbMakerInterface::class => [
+                '__class'   => \hiqdev\hifile\api\processors\SimpleThumbMaker::class,
                 'width'     => 320,
                 'height'    => 240,
             ],

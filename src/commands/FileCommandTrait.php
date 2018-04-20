@@ -1,8 +1,8 @@
 <?php
 
-namespace transmedia\signage\file\api\commands;
+namespace hiqdev\hifile\api\commands;
 
-use transmedia\signage\file\api\domain\file\File;
+use hiqdev\hifile\api\domain\file\File;
 
 /**
  * Trait FileCommandTrait

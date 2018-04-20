@@ -1,8 +1,8 @@
 <?php
 
-namespace transmedia\signage\file\api\services;
+namespace hiqdev\hifile\api\services;
 
-use transmedia\signage\file\api\domain\file\File;
+use hiqdev\hifile\api\domain\file\File;
 
 /**
  * Interface FileNotifierInterface

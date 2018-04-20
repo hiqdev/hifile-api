@@ -1,12 +1,12 @@
 <?php
 
-namespace transmedia\signage\file\api\services;
+namespace hiqdev\hifile\api\services;
 
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use Psr\Log\LoggerInterface;
 use hiapi\event\PublishToQueueListener;
-use transmedia\signage\file\api\domain\file\File;
-use transmedia\signage\file\api\domain\file\events\FileNotification;
+use hiqdev\hifile\api\domain\file\File;
+use hiqdev\hifile\api\domain\file\events\FileNotification;
 
 /**
  * Class NotifyToQueue

@@ -21,7 +21,7 @@ return [
     ],
     'modules' => [
         'file' => [
-            'class' => \transmedia\signage\file\api\Module::class,
+            'class' => \hiqdev\hifile\api\Module::class,
         ],
     ],
 ];

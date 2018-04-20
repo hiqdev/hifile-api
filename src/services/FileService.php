@@ -1,22 +1,22 @@
 <?php
 
-namespace transmedia\signage\file\api\services;
+namespace hiqdev\hifile\api\services;
 
 use Ramsey\Uuid\Uuid;
 use hiapi\event\EventStorageInterface;
 use hiapi\exceptions\domain\InvariantException;
 use hidev\helpers\Hidev;
 use hiqdev\yii\DataMapper\query\Specification;
-use transmedia\signage\file\api\domain\file\File;
-use transmedia\signage\file\api\domain\file\FileFactoryInterface;
-use transmedia\signage\file\api\domain\file\FileRepositoryInterface;
-use transmedia\signage\file\api\domain\file\FileServiceInterface;
-use transmedia\signage\file\api\domain\file\FileCreationDto;
-use transmedia\signage\file\api\domain\file\Url;
-use transmedia\signage\file\api\services\FileNotifier;
-use transmedia\signage\file\api\providers\ProviderInterface;
-use transmedia\signage\file\api\providers\ProviderFactoryInterface;
-use transmedia\signage\file\api\processors\ProcessorFactoryInterface;
+use hiqdev\hifile\api\domain\file\File;
+use hiqdev\hifile\api\domain\file\FileFactoryInterface;
+use hiqdev\hifile\api\domain\file\FileRepositoryInterface;
+use hiqdev\hifile\api\domain\file\FileServiceInterface;
+use hiqdev\hifile\api\domain\file\FileCreationDto;
+use hiqdev\hifile\api\domain\file\Url;
+use hiqdev\hifile\api\services\FileNotifier;
+use hiqdev\hifile\api\providers\ProviderInterface;
+use hiqdev\hifile\api\providers\ProviderFactoryInterface;
+use hiqdev\hifile\api\processors\ProcessorFactoryInterface;
 use Yii;
 
 /**

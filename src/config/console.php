@@ -12,7 +12,7 @@
 return [
     'controllerMap' => [
         'file' => [
-            'class' => \transmedia\signage\file\api\console\FileController::class,
+            'class' => \hiqdev\hifile\api\console\FileController::class,
         ],
     ],
     'container' => [
@@ -35,8 +35,8 @@ return [
                 ],
                 'branches' => [
                     'file' => [
-                        'was-created' => \transmedia\signage\file\api\commands\FileProbeCommand::class,
-                        'got-ready' => \transmedia\signage\file\api\commands\FileNotifyCommand::class,
+                        'was-created' => \hiqdev\hifile\api\commands\FileProbeCommand::class,
+                        'got-ready' => \hiqdev\hifile\api\commands\FileNotifyCommand::class,
                     ],
                 ],
             ],

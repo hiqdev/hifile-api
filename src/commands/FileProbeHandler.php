@@ -1,8 +1,8 @@
 <?php
 
-namespace transmedia\signage\file\api\commands;
+namespace hiqdev\hifile\api\commands;
 
-use transmedia\signage\file\api\domain\file\FileServiceInterface;
+use hiqdev\hifile\api\domain\file\FileServiceInterface;
 
 /**
  * Class FileProbeHandler

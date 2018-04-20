@@ -8,9 +8,9 @@
  * @copyright Copyright (c) 2018, HiQDev (http://hiqdev.com/)
  */
 
-namespace transmedia\signage\file\api\processors;
+namespace hiqdev\hifile\api\processors;
 
-use transmedia\signage\file\api\domain\file\File;
+use hiqdev\hifile\api\domain\file\File;
 
 /**
  * ProcessorFactoryInterface

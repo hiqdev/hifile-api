@@ -8,7 +8,7 @@
  * @copyright Copyright (c) 2018, TransMedia (http://transmedia.com.ua/)
  */
 
-namespace transmedia\signage\file\api;
+namespace hiqdev\hifile\api;
 
 /**
  * Class Module

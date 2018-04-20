@@ -1,6 +1,6 @@
 <?php
 
-namespace transmedia\signage\file\api\domain\file\events;
+namespace hiqdev\hifile\api\domain\file\events;
 
 /**
  * Class FileWasCreated

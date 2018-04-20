@@ -1,11 +1,11 @@
 <?php
 
-namespace transmedia\signage\file\api\services;
+namespace hiqdev\hifile\api\services;
 
 use hiqdev\yii\DataMapper\factories\HydratorAwareFactoryTrait;
-use transmedia\signage\file\api\domain\file\File;
-use transmedia\signage\file\api\domain\file\FileCreationDto;
-use transmedia\signage\file\api\domain\file\FileFactoryInterface;
+use hiqdev\hifile\api\domain\file\File;
+use hiqdev\hifile\api\domain\file\FileCreationDto;
+use hiqdev\hifile\api\domain\file\FileFactoryInterface;
 use Zend\Hydrator\HydratorInterface;
 
 /**
