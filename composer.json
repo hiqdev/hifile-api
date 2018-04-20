@@ -36,6 +36,7 @@
         "hiqdev/hifile-sql": "<2.0 || dev-master"
     },
     "require-dev": {
+        "hiqdev/hidev": "<2.0 || dev-master",
         "hiqdev/hidev-php": "<2.0 || dev-master",
         "hiqdev/hidev-hiqdev": "<2.0 || dev-master"
     },
