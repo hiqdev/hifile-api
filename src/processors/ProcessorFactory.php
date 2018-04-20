@@ -1,9 +1,9 @@
 <?php
 /**
- * File API
+ * HiFile file server API
  *
- * @link      https://github.com/transmedia/filer-api
- * @package   filer-api
+ * @link      https://github.com/hiqdev/hifile-api
+ * @package   hifile-api
  * @license   BSD-3-Clause
  * @copyright Copyright (c) 2018, HiQDev (http://hiqdev.com/)
  */
@@ -14,7 +14,7 @@ use hiqdev\hifile\api\domain\file\File;
 use yii\di\Container;
 
 /**
- * class ProcessorFactory
+ * class ProcessorFactory.
  *
  * @author Andrii Vasyliev <sol@hiqdev.com>
  */
@@ -48,5 +48,4 @@ class ProcessorFactory extends \yii\base\BaseObject implements ProcessorFactoryI
 
         throw new \Exception("couldn't find processor for '$mime'");
     }
-
 }

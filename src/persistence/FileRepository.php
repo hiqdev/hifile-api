@@ -1,23 +1,29 @@
 <?php
+/**
+ * HiFile file server API
+ *
+ * @link      https://github.com/hiqdev/hifile-api
+ * @package   hifile-api
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2018, HiQDev (http://hiqdev.com/)
+ */
 
 namespace hiqdev\hifile\api\persistence;
 
+use hiqdev\hifile\api\domain\file\File;
+use hiqdev\hifile\api\domain\file\FileFactoryInterface;
+use hiqdev\hifile\api\domain\file\FileRepositoryInterface;
 use hiqdev\yii\DataMapper\components\ConnectionInterface;
 use hiqdev\yii\DataMapper\components\EntityManagerInterface;
 use hiqdev\yii\DataMapper\expressions\CallExpression;
 use hiqdev\yii\DataMapper\expressions\HstoreExpression;
-use hiqdev\yii\DataMapper\query\Specification;
 use hiqdev\yii\DataMapper\repositories\BaseRepository;
 use Ramsey\Uuid\Uuid;
-use hiqdev\hifile\api\domain\file\File;
-use hiqdev\hifile\api\domain\file\FileFactoryInterface;
-use hiqdev\hifile\api\domain\file\FileRepositoryInterface;
 use yii\db\Query;
-use yii\filters\auth\QueryParamAuth;
 use yii\helpers\Json;
 
 /**
- * Class FileRepository
+ * Class FileRepository.
  *
  * @author Andrii Vasyliev <sol@hiqdev.com>
  */
@@ -53,7 +59,7 @@ class FileRepository extends BaseRepository implements FileRepositoryInterface
                 'label'     => $file->getLabel(),
                 'descr'     => $file->getDescr(),
                 'type'      => $file->getType(),
-            ]))
+            ])),
         ]);
         $id = Uuid::fromString($query->scalar());
 
@@ -71,7 +77,7 @@ class FileRepository extends BaseRepository implements FileRepositoryInterface
      */
     public function delete(File $file): void
     {
-        $this->db->createCommand()->delete('file', ['obj_id' => (int)$file->getId()])->execute();
+        $this->db->createCommand()->delete('file', ['obj_id' => (int) $file->getId()])->execute();
     }
 
     /**
@@ -90,7 +96,7 @@ class FileRepository extends BaseRepository implements FileRepositoryInterface
                 'filename'  => $file->getFilename(),
                 'size'      => $file->getSize(),
                 'data'      => Json::encode($file->getData()),
-            ]))
+            ])),
         ]);
         $id = $query->scalar();
 

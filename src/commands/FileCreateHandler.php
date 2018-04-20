@@ -1,13 +1,21 @@
 <?php
+/**
+ * HiFile file server API
+ *
+ * @link      https://github.com/hiqdev/hifile-api
+ * @package   hifile-api
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2018, HiQDev (http://hiqdev.com/)
+ */
 
 namespace hiqdev\hifile\api\commands;
 
-use hiqdev\hifile\api\domain\file\FileServiceInterface;
 use hiqdev\hifile\api\domain\file\FileCreationDto;
+use hiqdev\hifile\api\domain\file\FileServiceInterface;
 use yii\web\User;
 
 /**
- * Class FileCreateHandler
+ * Class FileCreateHandler.
  *
  * @author Andrii Vasyliev <sol@hiqdev.com>
  */
@@ -35,7 +43,7 @@ class FileCreateHandler
     }
 
     /**
-     * Example URL: https://cdn.filestackcontent.com/ttc9Vr9SjybPZ0W3Frys
+     * Example URL: https://cdn.filestackcontent.com/ttc9Vr9SjybPZ0W3Frys.
      */
     public function handle(FileCreateCommand $command)
     {

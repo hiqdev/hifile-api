@@ -1,9 +1,9 @@
 <?php
 /**
- * File API
+ * HiFile file server API
  *
- * @link      https://github.com/transmedia/filer-api
- * @package   filer-api
+ * @link      https://github.com/hiqdev/hifile-api
+ * @package   hifile-api
  * @license   BSD-3-Clause
  * @copyright Copyright (c) 2018, HiQDev (http://hiqdev.com/)
  */
@@ -13,7 +13,7 @@ namespace hiqdev\hifile\api\processors;
 use Yii;
 
 /**
- * class FfmpegProcessor
+ * class FfmpegProcessor.
  *
  * @author Andrii Vasyliev <sol@hiqdev.com>
  */
@@ -57,7 +57,7 @@ class FfmpegProcessor implements ProcessorInterface
     {
         $frame = dirname($path) . '/frame.jpg';
         $thumb = dirname($path) . '/thumb.jpg';
-        $position = (int)($duration * (rand(30,80)/100));
+        $position = (int) ($duration * (rand(30,80)/100));
         $this->ffmpeg(['-y', '-i', $path, '-vframes', 1, '-ss', $position, $frame]);
         $this->thumbMaker->make($frame, $thumb);
     }

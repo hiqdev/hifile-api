@@ -1,11 +1,11 @@
 <?php
 /**
- * API for Transmedia
+ * HiFile file server API
  *
- * @link      https://github.com/transmedia/hiapi
- * @package   hiapi
- * @license   proprietary
- * @copyright Copyright (c) 2018, TransMedia (http://transmedia.com.ua/)
+ * @link      https://github.com/hiqdev/hifile-api
+ * @package   hifile-api
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2018, HiQDev (http://hiqdev.com/)
  */
 
 return [
@@ -36,19 +36,19 @@ return [
                     ],
                     \hiqdev\hifile\api\commands\FileCreateCommand::class => [
                         [\hiapi\middlewares\AuthMiddleware::class, 'file.create'],
-                        \hiapi\middlewares\PassthroughCommandHandler::class
+                        \hiapi\middlewares\PassthroughCommandHandler::class,
                     ],
                     \hiqdev\hifile\api\commands\FileFetchCommand::class => [
                         [\hiapi\middlewares\AuthMiddleware::class, 'file.fetch'],
-                        \hiapi\middlewares\PassthroughCommandHandler::class
+                        \hiapi\middlewares\PassthroughCommandHandler::class,
                     ],
                     \hiqdev\hifile\api\commands\FileProbeCommand::class => [
                         [\hiapi\middlewares\AuthMiddleware::class, 'file.probe'],
-                        \hiapi\middlewares\PassthroughCommandHandler::class
+                        \hiapi\middlewares\PassthroughCommandHandler::class,
                     ],
                     \hiqdev\hifile\api\commands\FileNotifyCommand::class => [
                         [\hiapi\middlewares\AuthMiddleware::class, 'file.notify'],
-                        \hiapi\middlewares\PassthroughCommandHandler::class
+                        \hiapi\middlewares\PassthroughCommandHandler::class,
                     ],
                 ],
             ],

@@ -1,15 +1,23 @@
 <?php
+/**
+ * HiFile file server API
+ *
+ * @link      https://github.com/hiqdev/hifile-api
+ * @package   hifile-api
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2018, HiQDev (http://hiqdev.com/)
+ */
 
 namespace hiqdev\hifile\api\persistence;
 
 use hiqdev\yii\DataMapper\models\AbstractModel;
-use hiqdev\yii\DataMapper\query\attributes\IntegerAttribute;
 use hiqdev\yii\DataMapper\query\attributes\DateTimeAttribute;
+use hiqdev\yii\DataMapper\query\attributes\IntegerAttribute;
 use hiqdev\yii\DataMapper\query\attributes\StringAttribute;
 use hiqdev\yii\DataMapper\query\attributes\UuidAttribute;
 
 /**
- * Class FileModel
+ * Class FileModel.
  *
  * @author Andrii Vasyliev <sol@hiqdev.com>
  */

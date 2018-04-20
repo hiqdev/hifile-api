@@ -1,14 +1,22 @@
 <?php
+/**
+ * HiFile file server API
+ *
+ * @link      https://github.com/hiqdev/hifile-api
+ * @package   hifile-api
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2018, HiQDev (http://hiqdev.com/)
+ */
 
 namespace hiqdev\hifile\api\commands;
 
-use hiapi\commands\GetInfoHandler;
 use hiapi\commands\EntityCommandInterface;
-use hiqdev\yii\DataMapper\components\EntityManagerInterface;
+use hiapi\commands\GetInfoHandler;
 use hiqdev\hifile\api\domain\file\FileServiceInterface;
+use hiqdev\yii\DataMapper\components\EntityManagerInterface;
 
 /**
- * Class FileGetInfoCommand
+ * Class FileGetInfoCommand.
  *
  * @author Andrii Vasyliev <sol@hiqdev.com>
  */

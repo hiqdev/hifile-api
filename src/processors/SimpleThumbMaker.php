@@ -1,9 +1,9 @@
 <?php
 /**
- * File API
+ * HiFile file server API
  *
- * @link      https://github.com/transmedia/filer-api
- * @package   filer-api
+ * @link      https://github.com/hiqdev/hifile-api
+ * @package   hifile-api
  * @license   BSD-3-Clause
  * @copyright Copyright (c) 2018, HiQDev (http://hiqdev.com/)
  */
@@ -13,7 +13,7 @@ namespace hiqdev\hifile\api\processors;
 use claviska\SimpleImage;
 
 /**
- * class SimpleThumbMaker
+ * class SimpleThumbMaker.
  *
  * @author Andrii Vasyliev <sol@hiqdev.com>
  */

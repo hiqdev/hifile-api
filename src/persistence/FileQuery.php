@@ -1,11 +1,19 @@
 <?php
+/**
+ * HiFile file server API
+ *
+ * @link      https://github.com/hiqdev/hifile-api
+ * @package   hifile-api
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2018, HiQDev (http://hiqdev.com/)
+ */
 
 namespace hiqdev\hifile\api\persistence;
 
 use hiqdev\yii\DataMapper\query\Query;
 
 /**
- * Class FileQuery
+ * Class FileQuery.
  *
  * @author Andrii Vasyliev <sol@hiqdev.com>
  */
@@ -42,7 +50,6 @@ class FileQuery extends Query
             ->innerJoin('ref        fp', 'fp.obj_id = zf.provider_id')
             ->innerJoin('ref        ft', 'ft.obj_id = zf.type_id')
             ->innerJoin('ref        fs', 'fs.obj_id = zf.state_id')
-            ->leftJoin('ref         fm', 'fm.obj_id = zf.mimetype_id')
-        ;
+            ->leftJoin('ref         fm', 'fm.obj_id = zf.mimetype_id');
     }
 }

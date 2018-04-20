@@ -1,4 +1,12 @@
 <?php
+/**
+ * HiFile file server API
+ *
+ * @link      https://github.com/hiqdev/hifile-api
+ * @package   hifile-api
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2018, HiQDev (http://hiqdev.com/)
+ */
 
 namespace hiqdev\hifile\api\domain;
 
@@ -7,7 +15,7 @@ use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 /**
- * Class FileEvent
+ * Class FileEvent.
  *
  * @author Andrii Vasyliev <sol@hiqdev.com>
  */
@@ -46,7 +54,7 @@ abstract class AbstractEvent extends \League\Event\AbstractEvent implements \Jso
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function uuid(): UuidInterface
     {
@@ -54,7 +62,7 @@ abstract class AbstractEvent extends \League\Event\AbstractEvent implements \Jso
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function type(): string
     {
@@ -62,7 +70,7 @@ abstract class AbstractEvent extends \League\Event\AbstractEvent implements \Jso
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function createdAt(): DateTimeImmutable
     {

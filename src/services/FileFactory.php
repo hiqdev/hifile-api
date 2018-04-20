@@ -1,15 +1,23 @@
 <?php
+/**
+ * HiFile file server API
+ *
+ * @link      https://github.com/hiqdev/hifile-api
+ * @package   hifile-api
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2018, HiQDev (http://hiqdev.com/)
+ */
 
 namespace hiqdev\hifile\api\services;
 
-use hiqdev\yii\DataMapper\factories\HydratorAwareFactoryTrait;
 use hiqdev\hifile\api\domain\file\File;
 use hiqdev\hifile\api\domain\file\FileCreationDto;
 use hiqdev\hifile\api\domain\file\FileFactoryInterface;
+use hiqdev\yii\DataMapper\factories\HydratorAwareFactoryTrait;
 use Zend\Hydrator\HydratorInterface;
 
 /**
- * Class FileFactory
+ * Class FileFactory.
  *
  * @author Andrii Vasyliev <sol@hiqdev.com>
  */

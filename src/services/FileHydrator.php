@@ -1,4 +1,12 @@
 <?php
+/**
+ * HiFile file server API
+ *
+ * @link      https://github.com/hiqdev/hifile-api
+ * @package   hifile-api
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2018, HiQDev (http://hiqdev.com/)
+ */
 
 namespace hiqdev\hifile\api\services;
 
@@ -7,12 +15,11 @@ use DateTimeImmutable;
 use hiqdev\yii\DataMapper\hydrator\GeneratedHydratorTrait;
 use hiqdev\yii\DataMapper\hydrator\RootHydratorAwareTrait;
 use Ramsey\Uuid\Uuid;
-use Zend\Hydrator\HydrationInterface;
-use Zend\Hydrator\HydratorInterface;
 use yii\helpers\Json;
+use Zend\Hydrator\HydratorInterface;
 
 /**
- * Class FileHydrator
+ * Class FileHydrator.
  *
  * @author Andrii Vasyliev <sol@hiqdev.com>
  */

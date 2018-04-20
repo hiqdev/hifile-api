@@ -1,17 +1,17 @@
 <?php
 /**
- * API for Transmedia
+ * HiFile file server API
  *
- * @link      https://github.com/transmedia/hiapi
- * @package   hiapi
- * @license   proprietary
- * @copyright Copyright (c) 2018, TransMedia (http://transmedia.com.ua/)
+ * @link      https://github.com/hiqdev/hifile-api
+ * @package   hifile-api
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2018, HiQDev (http://hiqdev.com/)
  */
 
 namespace hiqdev\hifile\api;
 
 /**
- * Class Module
+ * Class Module.
  *
  * @author Andrii Vasyliev <sol@hiqdev.com>
  */

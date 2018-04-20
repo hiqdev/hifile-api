@@ -1,13 +1,21 @@
 <?php
+/**
+ * HiFile file server API
+ *
+ * @link      https://github.com/hiqdev/hifile-api
+ * @package   hifile-api
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2018, HiQDev (http://hiqdev.com/)
+ */
 
 namespace hiqdev\hifile\api\controllers;
 
 use hiqdev\hifile\api\domain\file\FileServiceInterface;
-use yii\base\Module;
 use Yii;
+use yii\base\Module;
 
 /**
- * Class ApiController
+ * Class ApiController.
  *
  * @author Andrii Vasyliev <sol@hiqdev.com>
  */

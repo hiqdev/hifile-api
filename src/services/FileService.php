@@ -1,26 +1,33 @@
 <?php
+/**
+ * HiFile file server API
+ *
+ * @link      https://github.com/hiqdev/hifile-api
+ * @package   hifile-api
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2018, HiQDev (http://hiqdev.com/)
+ */
 
 namespace hiqdev\hifile\api\services;
 
-use Ramsey\Uuid\Uuid;
 use hiapi\event\EventStorageInterface;
 use hiapi\exceptions\domain\InvariantException;
 use hidev\helpers\Hidev;
-use hiqdev\yii\DataMapper\query\Specification;
 use hiqdev\hifile\api\domain\file\File;
+use hiqdev\hifile\api\domain\file\FileCreationDto;
 use hiqdev\hifile\api\domain\file\FileFactoryInterface;
 use hiqdev\hifile\api\domain\file\FileRepositoryInterface;
 use hiqdev\hifile\api\domain\file\FileServiceInterface;
-use hiqdev\hifile\api\domain\file\FileCreationDto;
 use hiqdev\hifile\api\domain\file\Url;
-use hiqdev\hifile\api\services\FileNotifier;
-use hiqdev\hifile\api\providers\ProviderInterface;
-use hiqdev\hifile\api\providers\ProviderFactoryInterface;
 use hiqdev\hifile\api\processors\ProcessorFactoryInterface;
+use hiqdev\hifile\api\providers\ProviderFactoryInterface;
+use hiqdev\hifile\api\providers\ProviderInterface;
+use hiqdev\yii\DataMapper\query\Specification;
+use Ramsey\Uuid\Uuid;
 use Yii;
 
 /**
- * Class FileService
+ * Class FileService.
  *
  * @author Andrii Vasyliev <sol@hiqdev.com>
  */
@@ -93,6 +100,7 @@ class FileService implements FileServiceInterface
             throw new InvariantException('Given `remoteid` already exists');
         }
     }
+
     /**
      * @param int $id
      * @param string $type
@@ -224,7 +232,7 @@ class FileService implements FileServiceInterface
         if (!file_exists($dir)) {
             exec("mkdir -p $dir");
         }
-        $lock = fopen("$dir/.fetching", "c");
+        $lock = fopen("$dir/.fetching", 'c');
 
         if (!$lock || !flock($lock, LOCK_EX | LOCK_NB)) {
             throw new \Exception('already working');

@@ -1,16 +1,22 @@
 <?php
+/**
+ * HiFile file server API
+ *
+ * @link      https://github.com/hiqdev/hifile-api
+ * @package   hifile-api
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2018, HiQDev (http://hiqdev.com/)
+ */
 
 namespace hiqdev\hifile\api\console;
 
 use hiqdev\hifile\api\domain\file\File;
 use hiqdev\hifile\api\domain\file\FileServiceInterface;
-use hiqdev\hifile\api\processors\ProcessorInterface;
 use hiqdev\hifile\api\processors\ProcessorFactoryInterface;
 use yii\base\Module;
-use Yii;
 
 /**
- * Class FileController
+ * Class FileController.
  *
  * @author Andrii Vasyliev <sol@hiqdev.com>
  */
@@ -66,7 +72,7 @@ class FileController extends \yii\console\Controller
         if (!file_exists($dir)) {
             exec("mkdir -p $dir");
         }
-        $lock = fopen("$dir/.fetching", "c");
+        $lock = fopen("$dir/.fetching", 'c');
 
         if (!$lock || !flock($lock, LOCK_EX | LOCK_NB)) {
             throw new \Exception('already working');
@@ -80,19 +86,19 @@ class FileController extends \yii\console\Controller
 
     protected function exec($prog, array $args): array
     {
-		$skips = [
+        $skips = [
             '> /dev/null' => 1,
             '2>&1' => 1,
-		];
+        ];
         $command = $prog;
         foreach ($args as $arg) {
-			$arg = isset($skips[$arg]) ? $arg : escapeshellarg($arg);
+            $arg = isset($skips[$arg]) ? $arg : escapeshellarg($arg);
             $command .= ' ' . $arg;
         }
 
         var_dump($command);
         exec($command, $output);
 
-		return $output;
+        return $output;
     }
 }

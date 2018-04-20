@@ -1,16 +1,24 @@
 <?php
+/**
+ * HiFile file server API
+ *
+ * @link      https://github.com/hiqdev/hifile-api
+ * @package   hifile-api
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2018, HiQDev (http://hiqdev.com/)
+ */
 
 namespace hiqdev\hifile\api\domain\file;
 
 use DateTimeImmutable;
 use hiapi\exceptions\domain\InvariantException;
-use hiqdev\hifile\api\domain\file\events\FileWasCreated;
 use hiqdev\hifile\api\domain\file\events\FileGotReady;
+use hiqdev\hifile\api\domain\file\events\FileWasCreated;
 use League\Event\GeneratorTrait;
 use Ramsey\Uuid\Uuid;
 
 /**
- * Class File
+ * Class File.
  *
  * @author Andrii Vasyliev <sol@hiqdev.com>
  */
@@ -253,6 +261,7 @@ class File
     {
         $this->descr = $descr;
     }
+
     public function getData(): array
     {
         return $this->data ?? [];
@@ -260,7 +269,7 @@ class File
 
     public function setMetaData(array $data): void
     {
-        foreach (['size','filename','mimetype'] as $key) {
+        foreach (['size', 'filename', 'mimetype'] as $key) {
             if (!empty($data[$key])) {
                 $this->{$key} = $data[$key];
                 unset($data[$key]);
@@ -268,5 +277,4 @@ class File
         }
         $this->data = array_merge($this->data ?? [], $data);
     }
-
 }
