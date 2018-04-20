@@ -11,6 +11,8 @@
 
 ## Installation
 
+### Initialization
+
 Find your root project: `transmedia/file.api.screens.media` in my case.
 
 Fetch the root project with git and install it with composer:
@@ -34,6 +36,12 @@ After changing environment variables refresh config with:
 ```sh
 composer dump
 ```
+
+### Docker stuff
+
+Build database image. See [hiqdev/hifile-sql]
+
+[hiqdev/hifile-sql]:    https://github.com/hiqdev/hifile-sql
 
 ## License
 
