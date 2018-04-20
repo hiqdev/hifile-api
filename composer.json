@@ -1,12 +1,18 @@
 {
     "name": "hiqdev/hifile-api",
     "type": "yii2-extension",
-    "description": "Signage File API server",
+    "description": "HiFile file server API",
     "keywords": [
+        "file server"
     ],
     "homepage": "https://github.com/hiqdev/hifile-api",
-    "license": "proprietary",
+    "license": "BSD-3-Clause",
     "support": {
+        "email": "support@hiqdev.com",
+        "source": "https://github.com/hiqdev/hifile-api",
+        "issues": "https://github.com/hiqdev/hifile-api/issues",
+        "wiki": "https://github.com/hiqdev/hifile-api/wiki",
+        "forum": "http://forum.hiqdev.com/"
     },
     "authors": [
         {
@@ -19,12 +25,18 @@
             "name": "Dmitry Naumenko",
             "role": "Lead backend developer",
             "email": "d.naumenko.a@gmail.com",
-            "homepage": "https://silverfire.me/"
+            "homepage": "http://silverfire.me/"
         },
         {
             "name": "Andrey Klochok",
             "role": "Lead frontend developer",
             "email": "andreyklochok@gmail.com",
+            "homepage": "http://hiqdev.com/"
+        },
+        {
+            "name": "Yuriy Myronchuk",
+            "role": "QA Lead",
+            "email": "bladeroot@gmail.com",
             "homepage": "http://hiqdev.com/"
         }
     ],

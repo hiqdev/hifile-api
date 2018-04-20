@@ -1,11 +1,13 @@
-# Signage File API server
+# HiFile API
 
-[![Latest Stable Version](https://poser.pugx.org/transmedia/signage-file-api/v/stable)](https://packagist.org/packages/transmedia/signage-file-api)
-[![Total Downloads](https://poser.pugx.org/transmedia/signage-file-api/downloads)](https://packagist.org/packages/transmedia/signage-file-api)
-[![Build Status](https://img.shields.io/travis/transmedia/signage-file-api.svg)](https://travis-ci.org/transmedia/signage-file-api)
-[![Scrutinizer Code Coverage](https://img.shields.io/scrutinizer/coverage/g/transmedia/signage-file-api.svg)](https://scrutinizer-ci.com/g/transmedia/signage-file-api/)
-[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/transmedia/signage-file-api.svg)](https://scrutinizer-ci.com/g/transmedia/signage-file-api/)
-[![Dependency Status](https://www.versioneye.com/php/transmedia:signage-file-api/dev-master/badge.svg)](https://www.versioneye.com/php/transmedia:signage-file-api/dev-master)
+**HiFile file server API**
+
+[![Latest Stable Version](https://poser.pugx.org/hiqdev/hifile-api/v/stable)](https://packagist.org/packages/hiqdev/hifile-api)
+[![Total Downloads](https://poser.pugx.org/hiqdev/hifile-api/downloads)](https://packagist.org/packages/hiqdev/hifile-api)
+[![Build Status](https://img.shields.io/travis/hiqdev/hifile-api.svg)](https://travis-ci.org/hiqdev/hifile-api)
+[![Scrutinizer Code Coverage](https://img.shields.io/scrutinizer/coverage/g/hiqdev/hifile-api.svg)](https://scrutinizer-ci.com/g/hiqdev/hifile-api/)
+[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/hiqdev/hifile-api.svg)](https://scrutinizer-ci.com/g/hiqdev/hifile-api/)
+[![Dependency Status](https://www.versioneye.com/php/hiqdev:hifile-api/dev-master/badge.svg)](https://www.versioneye.com/php/hiqdev:hifile-api/dev-master)
 
 ## Installation
 
@@ -14,20 +16,20 @@ The preferred way to install this yii2-extension is through [composer](http://ge
 Either run
 
 ```sh
-php composer.phar require "transmedia/signage-file-api"
+php composer.phar require "hiqdev/hifile-api"
 ```
 
 or add
 
 ```json
-"transmedia/signage-file-api": "*"
+"hiqdev/hifile-api": "*"
 ```
 
 to the require section of your composer.json.
 
 ## License
 
-This project is released under the terms of the proprietary [license](LICENSE).
-Read more [here](https://en.wikipedia.org/wiki/Proprietary_software).
+This project is released under the terms of the BSD-3-Clause [license](LICENSE).
+Read more [here](http://choosealicense.com/licenses/bsd-3-clause).
 
-Copyright © 2018, TransMedia (http://transmedia.com.ua/)
+Copyright © 2018, HiQDev (http://hiqdev.com/)
