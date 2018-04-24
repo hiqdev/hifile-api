@@ -39,9 +39,21 @@ composer dump
 
 ### Docker stuff
 
-Build database image. See [hiqdev/hifile-sql]
+Start with docker-compose:
 
-[hiqdev/hifile-sql]:    https://github.com/hiqdev/hifile-sql
+```sh
+docker-compose up
+```
+
+Or enable in systemd with provided unit file: `file.api.screens.media.service`.
+
+### Initialize DB
+
+Run migrations:
+
+```sh
+hidev migrate/up
+```
 
 ## License
 
