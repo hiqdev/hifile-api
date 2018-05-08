@@ -56,7 +56,7 @@ class FfmpegProcessor implements ProcessorInterface
     public function createThumbnail(string $path, $duration): void
     {
         $frame = dirname($path) . '/frame.jpg';
-        $thumb = dirname($path) . '/thumb.jpg';
+        $thumb = dirname($path) . '/' . self::THUMBFILE;
         $position = (int) ($duration * (rand(30,80)/100));
         $this->ffmpeg(['-y', '-i', $path, '-vframes', 1, '-ss', $position, $frame]);
         $this->thumbMaker->make($frame, $thumb);

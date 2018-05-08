@@ -17,6 +17,7 @@ namespace hiqdev\hifile\api\processors;
  */
 interface ProcessorInterface
 {
+    const THUMBFILE = 'thumb.jpg';
     /**
      * @return array array with file information: resolution, duration if available
      */

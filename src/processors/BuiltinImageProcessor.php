@@ -37,7 +37,7 @@ class BuiltinImageProcessor implements ProcessorInterface
 
     public function createThumbnail(string $path): string
     {
-        $thumb = dirname($path) . '/thumb.jpg';
+        $thumb = dirname($path) . '/' . self::THUMBFILE;
         $this->thumbMaker->make($path, $thumb);
     }
 }
