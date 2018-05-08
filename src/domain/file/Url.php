@@ -25,12 +25,12 @@ class Url
         return Yii::$app->params['file.site'];
     }
 
-    public static function build($id): string
+    public static function build($id, string $filename = null): string
     {
-        return rtrim(static::getSite(), '/') . '/file/' . static::buildPath($id);
+        return rtrim(static::getSite(), '/') . '/file/' . static::buildPath($id, $filename);
     }
 
-    public static function buildPath($id): string
+    public static function buildPath($id, string $filename = null): string
     {
         if ($id instanceof File) {
             return static::buildPathFromFile($id);
@@ -39,7 +39,7 @@ class Url
             $id = Uuid::fromString($id);
         }
 
-        return static::buildPathFromParts($id, 'a');
+        return static::buildPathFromParts($id, $filename);
     }
 
     public static function buildPathFromFile(File $file): string
@@ -47,9 +47,10 @@ class Url
         return static::buildPathFromParts($file->getId(), $file->getFilename() ?: 'a');
     }
 
-    public static function buildPathFromParts(Uuid $id, string $filename): string
+    public static function buildPathFromParts(Uuid $id, string $filename = null): string
     {
         $prefix = static::getPrefix($id);
+        $filename = $filename ?: 'a';
 
         return "$prefix/$id/$filename";
     }
