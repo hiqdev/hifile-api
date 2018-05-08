@@ -48,8 +48,8 @@ class FfmpegProcessor implements ProcessorInterface
         $this->createThumbnail($path, $duration);
 
         return array_filter([
-            'duration'      => $duration,
-            'resolution'    => $resolution,
+            self::DURATION      => $duration,
+            self::RESOLUTION    => $resolution,
         ]);
     }
 

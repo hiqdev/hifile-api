@@ -31,7 +31,7 @@ class BuiltinImageProcessor implements ProcessorInterface
         $this->createThumbnail($path);
 
         return [
-            'resolution' => "${width}x${height}",
+            self::RESOLUTION => "${width}x${height}",
         ];
     }
 
