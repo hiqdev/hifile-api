@@ -14,6 +14,7 @@ use DateTimeImmutable;
 use hiapi\exceptions\domain\InvariantException;
 use hiqdev\hifile\api\domain\file\events\FileGotReady;
 use hiqdev\hifile\api\domain\file\events\FileWasCreated;
+use hiqdev\hifile\api\processors;
 use League\Event\GeneratorTrait;
 use Ramsey\Uuid\Uuid;
 
@@ -209,6 +210,11 @@ class File
         return Url::build($this);
     }
 
+    public function getThumbUrl(): string
+    {
+        return Url::build($this, ProcessorInterface::THUMBFILE);
+    }
+
     /**
      * @return DateTimeImmutable
      */
@@ -264,7 +270,12 @@ class File
 
     public function getData(): array
     {
-        return $this->data ?? [];
+        $data = $this->data ?? [];
+        if (isset($data[ProcessorInterface::RESOLUTION]) && empty($data['thumbUrl'])) {
+            $data['thumbUrl'] = $object->getThumbUrl();
+        }
+
+        return $data;
     }
 
     public function setMetaData(array $data): void
