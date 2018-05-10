@@ -14,7 +14,7 @@ use DateTimeImmutable;
 use hiapi\exceptions\domain\InvariantException;
 use hiqdev\hifile\api\domain\file\events\FileGotReady;
 use hiqdev\hifile\api\domain\file\events\FileWasCreated;
-use hiqdev\hifile\api\processors;
+use hiqdev\hifile\api\processors\ProcessorInterface;
 use League\Event\GeneratorTrait;
 use Ramsey\Uuid\Uuid;
 
