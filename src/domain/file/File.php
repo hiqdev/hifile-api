@@ -272,7 +272,7 @@ class File
     {
         $data = $this->data ?? [];
         if (isset($data[ProcessorInterface::RESOLUTION]) && empty($data['thumbUrl'])) {
-            $data['thumbUrl'] = $object->getThumbUrl();
+            $data['thumbUrl'] = $this->getThumbUrl();
         }
 
         return $data;
