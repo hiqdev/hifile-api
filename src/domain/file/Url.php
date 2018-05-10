@@ -33,7 +33,7 @@ class Url
     public static function buildPath($id, string $filename = null): string
     {
         if ($id instanceof File) {
-            return static::buildPathFromFile($id);
+            return static::buildPathFromFile($id, $filename);
         }
         if (!$id instanceof Uuid) {
             $id = Uuid::fromString($id);
@@ -42,9 +42,9 @@ class Url
         return static::buildPathFromParts($id, $filename);
     }
 
-    public static function buildPathFromFile(File $file): string
+    public static function buildPathFromFile(File $file, string $filename = null): string
     {
-        return static::buildPathFromParts($file->getId(), $file->getFilename() ?: 'a');
+        return static::buildPathFromParts($file->getId(), $filename ?: $file->getFilename());
     }
 
     public static function buildPathFromParts(Uuid $id, string $filename = null): string

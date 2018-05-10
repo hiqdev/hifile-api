@@ -271,7 +271,7 @@ class File
     public function getData(): array
     {
         $data = $this->data ?? [];
-        if (isset($data[ProcessorInterface::RESOLUTION]) && empty($data['thumbUrl'])) {
+        if (isset($data[ProcessorInterface::RESOLUTION])) {
             $data['thumbUrl'] = $this->getThumbUrl();
         }
 
