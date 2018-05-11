@@ -13,7 +13,7 @@ return [
         'urlManager' => [
             'rules' => [
                 'file-proxy' => [
-                    'pattern' => 'file/<prefix:\\w+>/<id:[\\w-]+>/\\S+',
+                    'pattern' => 'file/<prefix:\w+>/<id:[\w-]+>/<dumb:.*>',
                     'route' => 'file/proxy/proxify',
                 ],
             ],

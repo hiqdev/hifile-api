@@ -38,12 +38,10 @@ class ProxyController extends \yii\web\Controller
         $file = $this->fileService->findOneOrFail($id);
 
         $current = Yii::$app->request->getUrl();
-        $canonic = $this->fileService->getUrl($file);
-        if ($current !== $canonic) {
+        $canonic = '/file/' . $this->fileService->getFilePath($file);
+        if (urldecode($current) !== $canonic) {
             return $this->redirect($canonic);
         }
-
-        $this->fileService->fetchFile($file);
         $url = $this->fileService->getRemoteUrl($file);
 
         return $this->redirect($url);
