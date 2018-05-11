@@ -239,10 +239,22 @@ class FileService implements FileServiceInterface
         }
 
         $url = $this->getRemoteUrl($file);
-        $this->exec('/usr/bin/curl', ['-o', $dst, $url]);
+        $this->fetchWithCurl($dst, $url);
         if (!file_exists($dst)) {
-            throw new \Exception("failed fetch file: {$file->getId()}");
+            throw new \Exception("failed fetch file: {$file->getId()}. Dst: {$dst}");
         }
+    }
+
+    protected function fetchWithCurl($dst, $url)
+    {
+        $fp = fopen($dst, 'w+');
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 50);
+        curl_setopt($ch, CURLOPT_FILE, $fp);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_exec($ch);
+        curl_close($ch);
+        fclose($fp);
     }
 
     protected function exec($prog, array $args): array
