@@ -107,6 +107,7 @@ class FfmpegProcessor implements ProcessorInterface
             '2>&1' => 1,
         ];
         $command = $prog;
+        setlocale(LC_CTYPE, "C.UTF-8");
         foreach ($args as $arg) {
             $arg = isset($skips[$arg]) ? $arg : escapeshellarg($arg);
             $command .= ' ' . $arg;
