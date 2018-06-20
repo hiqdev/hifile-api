@@ -221,6 +221,8 @@ class FileService implements FileServiceInterface
             $this->fetch($file);
         }
 
+        $file->setMd5(md5_file($dst));
+
         $proc = $this->processorFactory->get($file);
         $info = $proc->processFile($dst);
         $file->setReady();
@@ -252,8 +254,6 @@ class FileService implements FileServiceInterface
                 $file->getId(), $dst
             ));
         }
-
-        $file->setMd5(md5_file($dst));
     }
 
     protected function fetchWithCurl($dst, $url): void

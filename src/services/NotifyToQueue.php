@@ -23,6 +23,11 @@ use Psr\Log\LoggerInterface;
  */
 class NotifyToQueue extends PublishToQueueListener implements FileNotifierInterface
 {
+    /**
+     * @var FileHydrator
+     */
+    protected $hydrator;
+
     public function __construct(AMQPStreamConnection $amqp, LoggerInterface $logger, FileHydrator $hydrator)
     {
         parent::__construct($amqp, $logger);
