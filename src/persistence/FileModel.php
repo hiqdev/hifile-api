@@ -32,6 +32,7 @@ class FileModel extends AbstractModel
             'provider_id'   => IntegerAttribute::class,
             'remoteid'      => StringAttribute::class,
             'mimetype'      => StringAttribute::class,
+            'md5'           => StringAttribute::class,
             'mimetype_id'   => IntegerAttribute::class,
             'filename'      => StringAttribute::class,
             'size'          => IntegerAttribute::class,

@@ -32,6 +32,7 @@ class FileQuery extends Query
             'remoteid'      => 'zf.remoteid',
             'provider'      => 'fp.name',
             'mimetype'      => 'fm.name',
+            'md5'           => 'zf.md5',
             'filename'      => 'zf.filename',
             'size'          => 'zf.size',
             'data'          => 'zf.data',

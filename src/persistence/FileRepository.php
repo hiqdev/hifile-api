@@ -95,6 +95,7 @@ class FileRepository extends BaseRepository implements FileRepositoryInterface
                 'mimetype'  => $file->getMimeType(),
                 'filename'  => $file->getFilename(),
                 'size'      => $file->getSize(),
+                'md5'       => $file->getMd5(),
                 'data'      => Json::encode($file->getData()),
             ])),
         ]);
