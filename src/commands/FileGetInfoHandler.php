@@ -12,6 +12,7 @@ namespace hiqdev\hifile\api\commands;
 
 use hiapi\commands\EntityCommandInterface;
 use hiapi\commands\GetInfoHandler;
+use hiqdev\hifile\api\domain\file\File;
 use hiqdev\hifile\api\domain\file\FileServiceInterface;
 use hiqdev\yii\DataMapper\components\EntityManagerInterface;
 
@@ -35,6 +36,7 @@ class FileGetInfoHandler extends GetInfoHandler
 
     public function handle(EntityCommandInterface $command)
     {
+        /** @var File $file */
         $file = parent::handle($command);
 
         return $this->fileService->ensureMetadata($file);

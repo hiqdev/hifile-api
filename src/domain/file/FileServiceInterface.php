@@ -33,4 +33,16 @@ interface FileServiceInterface
      * @return File
      */
     public function delete($id): File;
+
+    /**
+     * @param File $file
+     * @return File
+     */
+    public function ensureMetadata(File $file): File;
+
+    /**
+     * @param $file
+     * @return mixed
+     */
+    public function probe(File $file): void;
 }

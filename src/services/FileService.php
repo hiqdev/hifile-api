@@ -34,6 +34,10 @@ use Yii;
 class FileService implements FileServiceInterface
 {
     /**
+     * @var FileNotifierInterface
+     */
+    protected $notifier;
+    /**
      * @var FileFactoryInterface
      */
     private $factory;
@@ -105,6 +109,7 @@ class FileService implements FileServiceInterface
      * @param int $id
      * @param string $type
      * @return File
+     * @throws InvariantException
      */
     public function changeType(int $id, string $type): File
     {
@@ -127,7 +132,7 @@ class FileService implements FileServiceInterface
         return $file;
     }
 
-    public function findOneOrFail($id)
+    public function findOneOrFail($id): File
     {
         $uuid = Uuid::fromString($id);
         $spec = (new Specification())->where(['id' => $uuid->toString()]);
@@ -207,7 +212,7 @@ class FileService implements FileServiceInterface
         $this->notifier->notify($file);
     }
 
-    public function probe(File $file)
+    public function probe(File $file): void
     {
         $dst = $this->getDestination($file);
         if (!file_exists($dst)) {

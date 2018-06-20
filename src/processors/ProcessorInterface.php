@@ -19,9 +19,12 @@ interface ProcessorInterface
 {
     const THUMBFILE = 'thumb.jpg';
     const DURATION = 'duration';
+    const DURATION_MS = 'duration_ms';
     const RESOLUTION = 'resolution';
+    const MD5 = 'md5';
 
     /**
+     * @param string $path
      * @return array array with file information: resolution, duration if available
      */
     public function processFile(string $path): array;

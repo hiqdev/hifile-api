@@ -40,6 +40,9 @@ class FfmpegProcessor implements ProcessorInterface
             if (strpos($line, 'Duration') && preg_match('/Duration: (\d{2,4}):(\d{2}):(\d{2}\.\d+)/', $line, $matches)) {
                 $duration = round(($matches[1]*60*60) + ($matches[2]*60) + ceil($matches[3]));
             }
+            if (strpos($line, 'Duration') && preg_match('/Duration: (\d{2,4}):(\d{2}):(\d{2})\.(\d+))/', $line, $matches)) {
+                $duration_ms = round(($matches[1]*60*60*1000) + ($matches[2]*60*1000) + $matches[3]*1000 + $matches[4]);
+            }
             if (strpos($line, 'Video') && preg_match('/ (\d{3,5}x\d{3,5})/', $line, $matches)) {
                 $resolution = $matches[1];
             }
@@ -49,7 +52,9 @@ class FfmpegProcessor implements ProcessorInterface
 
         return array_filter([
             self::DURATION      => $duration,
-            self::RESOLUTION    => $resolution,
+            self::DURATION_MS   => $duration_ms ?? null,
+            self::RESOLUTION    => $resolution ?? null,
+            self::MD5           => md5_file($path),
         ]);
     }
 
