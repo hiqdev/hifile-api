@@ -12,6 +12,7 @@ namespace hiqdev\hifile\api\services;
 
 use DateTime;
 use DateTimeImmutable;
+use hiqdev\hifile\api\domain\file\File;
 use hiqdev\yii\DataMapper\hydrator\GeneratedHydratorTrait;
 use hiqdev\yii\DataMapper\hydrator\RootHydratorAwareTrait;
 use Ramsey\Uuid\Uuid;
@@ -72,6 +73,7 @@ class FileHydrator implements HydratorInterface
             'label'         => $object->getLabel(),
             'descr'         => $object->getDescr(),
             'data'          => $object->getData(),
+            'md5'           => $object->getMd5(),
             'create_time'   => $this->time2iso($object->getCreateTime()),
             'update_time'   => $this->time2iso($object->getUpdateTime()),
         ]);

@@ -85,6 +85,11 @@ class File
     private $filename;
 
     /**
+     * @var string
+     */
+    private $md5;
+
+    /**
      * @var DateTimeImmutable
      */
     private $create_time;
@@ -280,12 +285,28 @@ class File
 
     public function setMetaData(array $data): void
     {
-        foreach (['size', 'filename', 'mimetype'] as $key) {
+        foreach (['size', 'filename', 'mimetype', 'md5'] as $key) {
             if (!empty($data[$key])) {
                 $this->{$key} = $data[$key];
                 unset($data[$key]);
             }
         }
         $this->data = array_merge($this->data ?? [], $data);
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getMd5(): ?string
+    {
+        return $this->md5;
+    }
+
+    /**
+     * @param string $md5
+     */
+    public function setMd5(string $md5): void
+    {
+        $this->md5 = $md5;
     }
 }

@@ -25,6 +25,8 @@ use hiqdev\hifile\api\providers\ProviderInterface;
 use hiqdev\yii\DataMapper\query\Specification;
 use Ramsey\Uuid\Uuid;
 use Yii;
+use yii\helpers\FileHelper;
+use yii\mutex\FileMutex;
 
 /**
  * Class FileService.
@@ -234,23 +236,27 @@ class FileService implements FileServiceInterface
         }
 
         $dir = dirname($dst);
-        if (!file_exists($dir)) {
-            exec("mkdir -p $dir");
-        }
-        $lock = fopen("$dir/.fetching", 'c');
+        FileHelper::createDirectory($dir, 0775, true);
 
-        if (!$lock || !flock($lock, LOCK_EX | LOCK_NB)) {
+        $mutex = new FileMutex();
+        if (!$mutex->acquire($dst, 0)) {
             throw new \Exception('already working');
         }
 
-        $url = $this->getRemoteUrl($file);
-        $this->fetchWithCurl($dst, $url);
+        $this->fetchWithCurl($dst, $this->getRemoteUrl($file));
+        $mutex->release($dst);
+
         if (!file_exists($dst)) {
-            throw new \Exception("failed fetch file: {$file->getId()}. Dst: {$dst}");
+            throw new \Exception(sprintf(
+                'failed fetch file "%s" to destination "%s"',
+                $file->getId(), $dst
+            ));
         }
+
+        $file->setMd5(md5_file($dst));
     }
 
-    protected function fetchWithCurl($dst, $url)
+    protected function fetchWithCurl($dst, $url): void
     {
         $fp = fopen($dst, 'w+');
         $ch = curl_init($url);

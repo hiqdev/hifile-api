@@ -32,7 +32,6 @@ class BuiltinImageProcessor implements ProcessorInterface
 
         return [
             self::RESOLUTION => "${width}x${height}",
-            self::MD5 => md5_file($path),
         ];
     }
 
