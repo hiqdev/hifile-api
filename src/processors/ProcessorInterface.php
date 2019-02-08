@@ -10,6 +10,8 @@
 
 namespace hiqdev\hifile\api\processors;
 
+use hiqdev\hifile\api\domain\file\File;
+
 /**
  * ProcessorInterface.
  *
@@ -25,8 +27,9 @@ interface ProcessorInterface
     const ALTERNATIVES = 'alternatives';
 
     /**
+     * @param File $file that should be processed
      * @param string $path
      * @return array array with file information: resolution, duration if available
      */
-    public function processFile(string $path): array;
+    public function processFile(File $file, string $path): array;
 }

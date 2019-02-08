@@ -224,7 +224,7 @@ class FileService implements FileServiceInterface
         $file->setMd5(md5_file($dst));
 
         $proc = $this->processorFactory->get($file);
-        $info = $proc->processFile($dst);
+        $info = $proc->processFile($file, $dst);
         $file->setReady();
         $this->setMetaData($file, $info);
         $this->releaseEvents($file);

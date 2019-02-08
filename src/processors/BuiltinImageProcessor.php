@@ -10,6 +10,8 @@
 
 namespace hiqdev\hifile\api\processors;
 
+use hiqdev\hifile\api\domain\file\File;
+
 /**
  * class BuiltinImageProcessor.
  *
@@ -24,7 +26,7 @@ class BuiltinImageProcessor implements ProcessorInterface
         $this->thumbMaker = $thumbMaker;
     }
 
-    public function processFile(string $path): array
+    public function processFile(File $file, string $path): array
     {
         [$width, $height] = getimagesize($path);
 

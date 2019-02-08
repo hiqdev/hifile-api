@@ -10,6 +10,8 @@
 
 namespace hiqdev\hifile\api\processors;
 
+use hiqdev\hifile\api\domain\file\File;
+use hiqdev\hifile\api\domain\file\Url;
 use Yii;
 
 /**
@@ -35,11 +37,9 @@ class FfmpegProcessor implements ProcessorInterface
         $this->thumbMaker = $thumbMaker;
     }
 
-    public function processFile(string $path): array
+    public function processFile(File $file, string $path): array
     {
-        $lines = $this->ffmpeg(['-i', $path, '2>&1']);
-
-        foreach ($lines as $line) {
+        foreach ($this->ffmpeg(['-i', $path, '2>&1']) as $line) {
             if (strpos($line, 'Duration') && preg_match('/Duration: (\d{2,4}):(\d{2}):(\d{2}\.\d+)/', $line, $matches)) {
                 $duration = round(($matches[1]*60*60) + ($matches[2]*60) + ceil($matches[3]));
             }
@@ -60,8 +60,8 @@ class FfmpegProcessor implements ProcessorInterface
             self::DURATION_MS   => $duration_ms ?? null,
             self::RESOLUTION    => $resolution ?? null,
             self::ALTERNATIVES  => [
-                'web' => $x264,
-                'player' => $x265
+                'web' => Url::build($file, $x264),
+                'player' => Url::build($file, $x265),
             ]
         ]);
     }
@@ -77,7 +77,8 @@ class FfmpegProcessor implements ProcessorInterface
 
     private function convertX265(string $source): string
     {
-        $target = \dirname($source) . '/converted_x265.' . pathinfo($source, PATHINFO_FILENAME) . '.mp4';
+        $filename = '/converted_x265.' . pathinfo($source, PATHINFO_FILENAME) . '.mp4';
+        $target = \dirname($source) . $filename;
 
         $this->ffmpeg([
             '-y', '-i', $source,
@@ -96,7 +97,8 @@ class FfmpegProcessor implements ProcessorInterface
 
     private function convertX264(string $source): string
     {
-        $target = \dirname($source) . '/converted_x264.' . pathinfo($source, PATHINFO_FILENAME) . '.mp4';
+        $filename = '/converted_x264.' . pathinfo($source, PATHINFO_FILENAME) . '.mp4';
+        $target = \dirname($source) . $filename;
 
         $this->ffmpeg([
             '-y', '-i', $source,
@@ -107,7 +109,7 @@ class FfmpegProcessor implements ProcessorInterface
             $target
         ]);
 
-        return $target;
+        return $filename;
     }
 
     protected function ffmpeg($args): array
