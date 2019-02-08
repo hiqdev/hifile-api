@@ -52,8 +52,8 @@ class FfmpegProcessor implements ProcessorInterface
         }
 
         $this->createThumbnail($path, $duration);
-        $this->convertX264($path, $x264 = '');
-        $this->convertX265($path, $x265 = '');
+        $x264 = $this->convertX264($path);
+        $x265 = $this->convertX265($path);
 
         return array_filter([
             self::DURATION      => $duration,
@@ -75,7 +75,7 @@ class FfmpegProcessor implements ProcessorInterface
         $this->thumbMaker->make($frame, $thumb);
     }
 
-    private function convertX265(string $source, string &$target): void
+    private function convertX265(string $source, string &$target): string
     {
         $target = \dirname($source) . '/converted_x265.' . pathinfo($source, PATHINFO_FILENAME) . '.mp4';
 
@@ -89,10 +89,12 @@ class FfmpegProcessor implements ProcessorInterface
             '-c:a', 'libmp3lame', '-ac', '2', '-ar', '48000', '-b:a', '160k',
             '-f', 'mpegts', '-mpegts_service_type', '0x1F',
             $target
-       ]);
+        ]);
+
+        return $target;
     }
 
-    private function convertX264(string $source, string &$target): void
+    private function convertX264(string $source, string &$target): string
     {
         $target = \dirname($source) . '/converted_x264.' . pathinfo($source, PATHINFO_FILENAME) . '.mp4';
 
@@ -104,6 +106,8 @@ class FfmpegProcessor implements ProcessorInterface
             '-c:a', 'libmp3lame', '-ac', '2', '-ar', '48000', '-b:a', '160k',
             $target
         ]);
+
+        return $target;
     }
 
     protected function ffmpeg($args): array
