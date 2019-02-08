@@ -52,8 +52,8 @@ class FfmpegProcessor implements ProcessorInterface
         }
 
         $this->createThumbnail($path, $duration);
-        $this->convertX265($path, $x265 = '');
         $this->convertX264($path, $x264 = '');
+        $this->convertX265($path, $x265 = '');
 
         return array_filter([
             self::DURATION      => $duration,
@@ -86,7 +86,7 @@ class FfmpegProcessor implements ProcessorInterface
             '-r', 'ntsc', '-c:v', 'libx265', '-preset', 'medium', '-crf', '22',
             '-maxrate', '5M', '-bufsize', '2M', '-pix_fmt', 'yuv420p',
             '-movflags', 'faststart', '-x265-params', 'keyint=30:min-keyint=0:scenecut=0',
-            '-c:a', 'libfaac', '-ac', '2', '-ar', '48000', '-b:a', '160k',
+            '-c:a', 'libmp3lame', '-ac', '2', '-ar', '48000', '-b:a', '160k',
             '-f', 'mpegts', '-mpegts_service_type', '0x1F',
             $target
        ]);
