@@ -52,14 +52,16 @@ class FfmpegProcessor implements ProcessorInterface
         }
 
         $this->createThumbnail($path, $duration);
-        $this->convert($path, $convertedFile);
+        $this->convertX265($path, $x265);
+        $this->convertX264($path, $x264);
 
         return array_filter([
             self::DURATION      => $duration,
             self::DURATION_MS   => $duration_ms ?? null,
             self::RESOLUTION    => $resolution ?? null,
             self::ALTERNATIVES  => [
-                'web' => $convertedFile
+                'web' => $x264,
+                'player' => $x265
             ]
         ]);
     }
@@ -73,9 +75,9 @@ class FfmpegProcessor implements ProcessorInterface
         $this->thumbMaker->make($frame, $thumb);
     }
 
-    private function convert(string $source, string &$target): void
+    private function convertX265(string $source, string &$target): void
     {
-        $target = \dirname($source) . '/converted.' . pathinfo($source, PATHINFO_FILENAME) . '.mp4';
+        $target = \dirname($source) . '/converted_x265.' . pathinfo($source, PATHINFO_FILENAME) . '.mp4';
 
         $this->ffmpeg([
             '-y', '-i', $source,
@@ -88,6 +90,30 @@ class FfmpegProcessor implements ProcessorInterface
             '-f', 'mpegts', '-mpegts_service_type', '0x1F',
             $target
        ]);
+    }
+
+    private function convertX264(string $source, string &$target): void
+    {
+        $target = \dirname($source) . '/converted_x264.' . pathinfo($source, PATHINFO_FILENAME) . '.mp4';
+        $passlog = \dirname($source) . '/ffmpeg_pass.log';
+
+        $this->ffmpeg([
+            '-y', '-i', $source,
+            '-preset', 'medium',
+            '-maxrate', '5M', '-bufsize', '2M',
+            '-b:v', '5M', '-bt:v', '5.5M', '-c:v', 'libx264', '-pass', 1, '-passlogfile', $passlog,
+            '-an', '-acodec', 'copy', '-passlogfile', '/tmp/dummy',
+            $target
+        ]);
+
+        $this->ffmpeg([
+            '-y', '-i', $source,
+            '-preset', 'medium',
+            '-maxrate', '5M', '-bufsize', '2M',
+            '-b:v', '5M', '-bt:v', '5.5M', '-c:v', 'libx264', '-pass', 2, '-passlogfile', $passlog,
+            '-c:a', 'libfaac', '-ac', '2', '-ar', '48000', '-b:a', '160k',
+            $target
+        ]);
     }
 
     protected function ffmpeg($args): array
