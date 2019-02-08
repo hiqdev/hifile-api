@@ -75,7 +75,7 @@ class FfmpegProcessor implements ProcessorInterface
         $this->thumbMaker->make($frame, $thumb);
     }
 
-    private function convertX265(string $source, string &$target): string
+    private function convertX265(string $source): string
     {
         $target = \dirname($source) . '/converted_x265.' . pathinfo($source, PATHINFO_FILENAME) . '.mp4';
 
@@ -94,7 +94,7 @@ class FfmpegProcessor implements ProcessorInterface
         return $target;
     }
 
-    private function convertX264(string $source, string &$target): string
+    private function convertX264(string $source): string
     {
         $target = \dirname($source) . '/converted_x264.' . pathinfo($source, PATHINFO_FILENAME) . '.mp4';
 
