@@ -111,7 +111,7 @@ class FfmpegProcessor implements ProcessorInterface
             '-preset', 'medium',
             '-maxrate', '5M', '-bufsize', '2M',
             '-b:v', '5M', '-bt:v', '5.5M', '-c:v', 'libx264', '-pass', 2, '-passlogfile', $passlog,
-            '-c:a', 'libfaac', '-ac', '2', '-ar', '48000', '-b:a', '160k',
+            '-c:a', 'libmp3lame', '-ac', '2', '-ar', '48000', '-b:a', '160k',
             $target
         ]);
     }
