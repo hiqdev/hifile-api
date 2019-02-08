@@ -95,22 +95,12 @@ class FfmpegProcessor implements ProcessorInterface
     private function convertX264(string $source, string &$target): void
     {
         $target = \dirname($source) . '/converted_x264.' . pathinfo($source, PATHINFO_FILENAME) . '.mp4';
-        $passlog = \dirname($source) . '/ffmpeg_pass.log';
 
         $this->ffmpeg([
             '-y', '-i', $source,
             '-preset', 'medium',
             '-maxrate', '5M', '-bufsize', '2M',
-            '-b:v', '5M', '-bt:v', '5M', '-c:v', 'libx264', '-pass', 1, '-passlogfile', $passlog,
-            '-an', '-acodec', 'copy', '-passlogfile', '/tmp/dummy',
-            $target
-        ]);
-
-        $this->ffmpeg([
-            '-y', '-i', $source,
-            '-preset', 'medium',
-            '-maxrate', '5M', '-bufsize', '2M',
-            '-b:v', '5M', '-bt:v', '5M', '-c:v', 'libx264', '-pass', 2, '-passlogfile', $passlog,
+            '-b:v', '5M', '-bt:v', '5M', '-c:v', 'libx264',
             '-c:a', 'libmp3lame', '-ac', '2', '-ar', '48000', '-b:a', '160k',
             $target
         ]);
