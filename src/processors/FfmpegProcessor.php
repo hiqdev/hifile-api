@@ -77,8 +77,8 @@ class FfmpegProcessor implements ProcessorInterface
 
     private function convertX265(string $source): string
     {
-        $filename = '/converted_x265.' . pathinfo($source, PATHINFO_FILENAME) . '.mp4';
-        $target = \dirname($source) . $filename;
+        $filename = 'converted_x265.' . pathinfo($source, PATHINFO_FILENAME) . '.mp4';
+        $target = \dirname($source) . '/' . $filename;
 
         $this->ffmpeg([
             '-y', '-i', $source,
@@ -97,8 +97,8 @@ class FfmpegProcessor implements ProcessorInterface
 
     private function convertX264(string $source): string
     {
-        $filename = '/converted_x264.' . pathinfo($source, PATHINFO_FILENAME) . '.mp4';
-        $target = \dirname($source) . $filename;
+        $filename = 'converted_x264.' . pathinfo($source, PATHINFO_FILENAME) . '.mp4';
+        $target = \dirname($source) . '/' . $filename;
 
         $this->ffmpeg([
             '-y', '-i', $source,
