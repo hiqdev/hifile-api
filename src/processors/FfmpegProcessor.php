@@ -101,7 +101,7 @@ class FfmpegProcessor implements ProcessorInterface
             '-y', '-i', $source,
             '-preset', 'medium',
             '-maxrate', '5M', '-bufsize', '2M',
-            '-b:v', '5M', '-bt:v', '5.5M', '-c:v', 'libx264', '-pass', 1, '-passlogfile', $passlog,
+            '-b:v', '5M', '-bt:v', '5M', '-c:v', 'libx264', '-pass', 1, '-passlogfile', $passlog,
             '-an', '-acodec', 'copy', '-passlogfile', '/tmp/dummy',
             $target
         ]);
@@ -110,7 +110,7 @@ class FfmpegProcessor implements ProcessorInterface
             '-y', '-i', $source,
             '-preset', 'medium',
             '-maxrate', '5M', '-bufsize', '2M',
-            '-b:v', '5M', '-bt:v', '5.5M', '-c:v', 'libx264', '-pass', 2, '-passlogfile', $passlog,
+            '-b:v', '5M', '-bt:v', '5M', '-c:v', 'libx264', '-pass', 2, '-passlogfile', $passlog,
             '-c:a', 'libmp3lame', '-ac', '2', '-ar', '48000', '-b:a', '160k',
             $target
         ]);
