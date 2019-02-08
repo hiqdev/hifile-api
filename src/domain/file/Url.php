@@ -44,7 +44,7 @@ class Url
 
     public static function buildPathFromFile(File $file, string $filename = null): string
     {
-        return static::buildPathFromParts($file->getId(), $filename ?: $file->getFilename());
+        return static::buildPathFromParts($file->getId(), $filename ?? $file->getFilename());
     }
 
     public static function buildPathFromParts(Uuid $id, string $filename = null): string
