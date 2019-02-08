@@ -22,6 +22,10 @@ use hiqdev\hifile\api\domain\file\FileCreationDto;
 class FilestackProvider implements ProviderInterface
 {
     protected static $domain = 'cdn.filestackcontent.com';
+    /**
+     * @var FilestackClient
+     */
+    protected        $filestack;
 
     public function __construct(FilestackClient $filestack)
     {

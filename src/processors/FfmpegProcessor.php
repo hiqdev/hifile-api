@@ -52,8 +52,8 @@ class FfmpegProcessor implements ProcessorInterface
         }
 
         $this->createThumbnail($path, $duration);
-        $this->convertX265($path, $x265);
-        $this->convertX264($path, $x264);
+        $this->convertX265($path, $x265 = '');
+        $this->convertX264($path, $x264 = '');
 
         return array_filter([
             self::DURATION      => $duration,
