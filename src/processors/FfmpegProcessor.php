@@ -23,6 +23,9 @@ class FfmpegProcessor implements ProcessorInterface
 
     protected $version;
 
+    /**
+     * @var ThumbMakerInterface
+     */
     protected $thumbMaker;
 
     public function __construct(string $binDir = '@root/ffmpeg', string $version = 'release', ThumbMakerInterface $thumbMaker)
@@ -49,21 +52,42 @@ class FfmpegProcessor implements ProcessorInterface
         }
 
         $this->createThumbnail($path, $duration);
+        $this->convert($path, $convertedFile);
 
         return array_filter([
             self::DURATION      => $duration,
             self::DURATION_MS   => $duration_ms ?? null,
             self::RESOLUTION    => $resolution ?? null,
+            self::ALTERNATIVES  => [
+                'web' => $convertedFile
+            ]
         ]);
     }
 
     public function createThumbnail(string $path, $duration): void
     {
-        $frame = dirname($path) . '/frame.jpg';
-        $thumb = dirname($path) . '/' . self::THUMBFILE;
+        $frame = \dirname($path) . '/frame.jpg';
+        $thumb = \dirname($path) . '/' . self::THUMBFILE;
         $position = (int) ($duration * (rand(30,80)/100));
         $this->ffmpeg(['-y', '-i', $path, '-vframes', 1, '-ss', $position, $frame]);
         $this->thumbMaker->make($frame, $thumb);
+    }
+
+    private function convert(string $source, string &$target): void
+    {
+        $target = \dirname($source) . '/converted.' . pathinfo($source, PATHINFO_FILENAME) . '.mp4';
+
+        $this->ffmpeg([
+            '-y', '-i', $source,
+            '-threads', '2', '-map_metadata', '-1', '-loglevel', 'error',
+            '-filter_complex', '[0]trim=0:0.5[hold];[0][hold]concat[extended];[extended][0]overlay',
+            '-r', 'ntsc', '-c:v', 'libx265', '-preset', 'medium', '-crf', '22',
+            '-maxrate', '5M', '-bufsize', '2M', '-pix_fmt', 'yuv420p',
+            '-movflags', 'faststart', '-x265-params', 'keyint=30:min-keyint=0:scenecut=0',
+            '-c:a', 'libfaac', '-ac', '2', '-ar', '48000', '-b:a', '160k',
+            '-f', 'mpegts', '-mpegts_service_type', '0x1F',
+            $target
+       ]);
     }
 
     protected function ffmpeg($args): array

@@ -11,6 +11,7 @@
 namespace hiqdev\hifile\api\controllers;
 
 use hiqdev\hifile\api\domain\file\FileServiceInterface;
+use hiqdev\hifile\api\services\FileService;
 use Yii;
 use yii\base\Module;
 
@@ -21,6 +22,9 @@ use yii\base\Module;
  */
 class ProxyController extends \yii\web\Controller
 {
+    /**
+     * @var FileServiceInterface|FileService
+     */
     protected $fileService;
 
     public function __construct(
@@ -33,12 +37,12 @@ class ProxyController extends \yii\web\Controller
         $this->fileService = $fileService;
     }
 
-    public function actionProxify($prefix, $id)
+    public function actionProxify($prefix, $id, $filename)
     {
         $file = $this->fileService->findOneOrFail($id);
 
         $current = Yii::$app->request->getUrl();
-        $canonic = '/file/' . $this->fileService->getFilePath($file);
+        $canonic = '/file/' . $this->fileService->getFilePath($file, $filename);
         if (urldecode($current) !== $canonic) {
             return $this->redirect($canonic);
         }

@@ -40,12 +40,12 @@ class File
     private $client_id;
 
     /**
-     * @var textS E.g. 'filestack'
+     * @var string E.g. 'filestack'
      */
     private $provider;
 
     /**
-     * @var text
+     * @var string
      * Eg. FileStack ID: ttc9Vr9SjybPZ0W3Frys
      *       image png URL: https://cdn.filestackcontent.com/ttc9Vr9SjybPZ0W3Frys
      * short video mkv URL: https://cdn.filestackcontent.com/5aDSmbOWQiSiSHeP6KeR

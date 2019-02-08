@@ -17,11 +17,12 @@ namespace hiqdev\hifile\api\processors;
  */
 interface ProcessorInterface
 {
-    const THUMBFILE = 'thumb.jpg';
-    const DURATION = 'duration';
-    const DURATION_MS = 'duration_ms';
-    const RESOLUTION = 'resolution';
-    const MD5 = 'md5';
+    const THUMBFILE    = 'thumb.jpg';
+    const DURATION     = 'duration';
+    const DURATION_MS  = 'duration_ms';
+    const RESOLUTION   = 'resolution';
+    const MD5          = 'md5';
+    const ALTERNATIVES = 'alternatives';
 
     /**
      * @param string $path

@@ -202,11 +202,11 @@ class FileService implements FileServiceInterface
         return $dir . $this->getFilePath($file);
     }
 
-    public function getFilePath(File $file): string
+    public function getFilePath(File $file, string $filename): string
     {
         $this->ensureMetadata($file);
 
-        return Url::buildPathFromFile($file);
+        return Url::buildPathFromFile($file, $filename);
     }
 
     public function notify(File $file)
