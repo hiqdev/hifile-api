@@ -84,6 +84,7 @@ return [
                 'processors' => [
                     'image' => \hiqdev\hifile\api\processors\BuiltinImageProcessor::class,
                     'video' => \hiqdev\hifile\api\processors\FfmpegProcessor::class,
+                    'application/octet-stream' => \hiqdev\hifile\api\processors\FfmpegProcessor::class,
                 ],
             ],
             \hiqdev\hifile\api\processors\ThumbMakerInterface::class => [
