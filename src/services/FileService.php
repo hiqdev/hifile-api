@@ -260,7 +260,7 @@ class FileService implements FileServiceInterface
     {
         $fp = fopen($dst, 'w+');
         $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 50);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 3600);
         curl_setopt($ch, CURLOPT_FILE, $fp);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
         curl_exec($ch);
